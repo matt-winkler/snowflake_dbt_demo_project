@@ -45,12 +45,14 @@ vars:
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
 models:
-  demo_examples:
-    audit:
-      +post-hook: "{{validate_model_name(this, ruleset='demos')}}"
         
-
   tpch:
+    demo_examples:
+      audit:
+        #+post-hook: 
+          #- "{{validate_model_name(this, ruleset='demos')}}"
+          #- "{{validate_column_names(this)}}"
+
     staging:
       +materialized: view
 
