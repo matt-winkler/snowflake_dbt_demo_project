@@ -9,7 +9,7 @@ Welcome to the dbt Labs demo dbt project! We use the [TPCH dataset](https://docs
 ## Special demos
 
 #### Cost Reporting in Snowflake:
-Enable detailed reporting on credit utilization by user, logical environment, model. 
+Enable detailed reporting on credit utilization by user, logical environment, model. See `macros/config/set_query_tag.sql` for configuration to enable detailed tagging in your project.
 
 #### Run dbt Cloud Jobs from Airflow
 Trigger dbt Cloud jobs to run remotely via Apache Airflow. See instructions [here](airflow/README.md) for how to get started.
