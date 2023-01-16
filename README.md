@@ -10,4 +10,4 @@ Welcome to the dbt Labs demo dbt project! We use the [TPCH dataset](https://docs
 
 - **dbt-external-tables:** Manage database objects that read data external to the warehouse within dbt. See `models/demo_examples/external_sources.yml`.
 - **snapshots:** Create versioned datasets to track Type II changes. See `snapshots/source_data__snapshot.sql` and `models/demo_examples/snapshots/source_data.sql` for working code.
-- **Airflow with dbt Cloud:** Trigger dbt Cloud jobs to run remotely via Apache Airflow. See instructions (here)[airflow/README.md] for how to get started.
+- **Airflow with dbt Cloud:** Trigger dbt Cloud jobs to run remotely via Apache Airflow. See instructions [here](airflow/README.md) for how to get started.
