@@ -26,7 +26,7 @@ from airflow.providers.dbt.cloud.operators.dbt import (
 with DAG(
     dag_id="dbt_cloud_provider_fct_orders",
     default_args={"dbt_cloud_conn_id": "dbt_cloud", "account_id": 28885},
-    start_date=datetime(2021, 1, 1),
+    start_date=datetime.today(),
     schedule_interval=None,
     catchup=False,
 ) as dag:

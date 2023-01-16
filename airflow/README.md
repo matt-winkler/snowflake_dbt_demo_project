@@ -1,3 +1,5 @@
+source: https://github.com/sungchun12/airflow-dbt-cloud/blob/main/README.md
+
 # airflow-dbt-cloud
 
 Examples of scheduling dbt Cloud pipelines in airflow. This is intended to be the simplest and fastest way to get started locally.
@@ -5,10 +7,16 @@ Examples of scheduling dbt Cloud pipelines in airflow. This is intended to be th
 
 ## Getting Started
 
-Follow this wonderful [guide](https://docs.getdbt.com/guides/orchestration/airflow-and-dbt-cloud/1-airflow-and-dbt-cloud)
+Follow this [guide](https://docs.getdbt.com/guides/orchestration/airflow-and-dbt-cloud/1-airflow-and-dbt-cloud)
 
+> Note: Follow the below instructions to get started with the example DAGs in this repo using the [new `astro` CLI vs. the old `astrocloud` CLI](https://docs.astronomer.io/astro/cli/install-cli#migrate-from-astrocloud-to-astro)
 
-## Prerequisites:
+Astro CLI Docs: [here](https://github.com/astronomer/astro-cli)
 
-* Docker installed and running
-* dbt Cloud API token with "Job Admin" permission set assigned. Instructions are available [here](https://docs.getdbt.com/docs/dbt-cloud-apis/service-tokens).
+```bash
+# install astro cli
+brew install astro
+
+# start the astro dev environment
+astro dev start
+```
