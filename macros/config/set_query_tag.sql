@@ -29,9 +29,6 @@
               dbt_model_name,
               dbt_materialization_type,
               dbt_incremental_full_refresh) %}
-    
-    {# clean up single quotes in new_query_tag #}
-    {% set new_query_tag = new_query_tag.strip("'").strip("`") %}
 
     {% set original_query_tag = get_current_query_tag() %}
     {{ log("Setting query_tag to '" ~ new_query_tag ~ "'. Will reset to '" ~ original_query_tag ~ "' after materialization.") }}
