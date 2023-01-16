@@ -60,10 +60,10 @@ models:
       core:
         materialized: table
 
-      
-seeds:
-  tpch:
-    snowflake_contract_rates:
-      +column_types:
-        effective_date: DATE
-        rate: NUMBER   
+
+# seeds:
+#   tpch:
+#     snowflake_contract_rates:
+#       +column_types:
+#         effective_date: DATE
+#         rate: NUMBER   
