@@ -54,11 +54,10 @@ models:
           #- "{{validate_model_name(this, ruleset='demos')}}"
           #- "{{validate_column_names(this)}}"
 
-    staging:
-      +materialized: view
-
     marts:
-      core:
+      bronze:
+        +materialized: view
+      gold:
         materialized: table
         +required_docs: true
         +required_tests:
