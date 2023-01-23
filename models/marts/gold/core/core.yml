@@ -137,6 +137,9 @@ models:
   - name: fct_orders
     description: orders fact table
     columns:
+      - name: gross_item_sales_amount
+        tests:
+          - orders__assert_positive_price
       - name: order_key
         description: primary key of the model
         tests:
