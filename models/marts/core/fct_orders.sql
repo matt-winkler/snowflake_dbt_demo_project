@@ -52,7 +52,7 @@ final as (
         inner join order_item_summary
             on orders.order_key = order_item_summary.order_key
         -- add ref() statement and uncomment the line below
-        --inner join {{ref('dim_customers')}} as dim_customers
+        --inner join dim_customers as dim_customers
         --     on orders.customer_key = dim_customers.customer_key
 )
 select 
