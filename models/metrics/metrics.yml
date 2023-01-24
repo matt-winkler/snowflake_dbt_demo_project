@@ -1,3 +1,5 @@
+version: 2
+
 metrics:
   - name: develop_metric
     model: ref('fct_orders')
