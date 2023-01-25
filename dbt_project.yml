@@ -67,7 +67,7 @@ models:
         fct_orders:
           +required_tests:
             "orders__assert_positive_price": 1
-            
+
 # seeds:
 #   tpch:
 #     snowflake_contract_rates:
