@@ -55,9 +55,11 @@ models:
           #- "{{validate_column_names(this)}}"
 
     marts:
-      bronze:
+      raw:
         +materialized: view
-      gold:
+      analytics:
+        +materialized: view
+      consumption:
         materialized: table
         core:
           +required_docs: true
