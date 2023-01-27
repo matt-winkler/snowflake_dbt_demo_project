@@ -5,6 +5,8 @@
     )
 }}
 
+select * from subscriber_data
+
 select
         year,
         total_revenue
