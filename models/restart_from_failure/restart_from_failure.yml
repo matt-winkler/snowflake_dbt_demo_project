@@ -1,0 +1,14 @@
+version: 2 
+
+models:
+  - name: model_a
+    columns:
+      - name: id
+        tests:
+          - unique
+          
+  - name: model_b
+    columns:
+      - name: id
+        tests:
+          - unique
