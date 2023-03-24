@@ -2,8 +2,8 @@
     config(
         materialized='incremental',
         unique_key='order_date',
-        incremental_strategy='append',
-        pre_hook=delete_from_incremental_table_between(this, date_column='order_date')
+        incremental_strategy='delete+insert',
+        incremental_predicates=["order_date >= " ~ "'" ~ var('begin_date') ~ "'", "order_date <= " ~ "'" ~ var('end_date') ~ "'"],
     )
 }}
 
