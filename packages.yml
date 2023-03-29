@@ -9,5 +9,7 @@ packages:
     version: 0.5.6
   - package: tnightengale/dbt_meta_testing
     version: 0.3.6
+  - package: brooklyn-data/dbt_artifacts
+    version: 2.2.2
 
 

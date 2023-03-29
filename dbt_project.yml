@@ -34,6 +34,7 @@ on-run-start:
 on-run-end:
   - "alter warehouse transforming set warehouse_size=xsmall;"
   - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
+  - "{{ dbt_artifacts.upload_results(results) }}"
 
 vars:
   start_date: '1999-01-01'
@@ -44,11 +45,17 @@ vars:
 
 
 # in dbt_project.yml
-models:  
-        
+snapshots:
   tpch:
-    
+    +target_schema: salesops_sandbox
+
+models:   
+  tpch:
+    +schema: salesops_sandbox
     demo_examples:
+      custom_alias_and_schema:
+        +schema: my_schema
+
       audit:
         #+post-hook: 
           #- "{{validate_model_name(this, ruleset='demos')}}"
