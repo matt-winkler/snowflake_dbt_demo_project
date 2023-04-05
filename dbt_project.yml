@@ -38,7 +38,7 @@ on-run-end:
 vars:
   start_date: '1999-01-01'
   'dbt_date:time_zone': 'Europe/Frankfurt'
-  demo__backfill_incremental__start_date: '1996-01-01'
+  demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
 
 
