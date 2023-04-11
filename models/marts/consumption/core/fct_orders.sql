@@ -1,7 +1,7 @@
 {{
     config(
         materialized = 'table',
-        tags=['finance'],
+        tags=['finance', 'orders_data'],
     )
 }}
 
@@ -36,7 +36,7 @@ final as (
         orders.order_date,
         orders.customer_key,
         -- uncomment here and the join below to demonstrate pulling the region into the fct_orders model
-        dim_customers.region,
+        dim_customers.region as sales_region,
         orders.status_code,
         orders.priority_code,
         orders.clerk_name,
