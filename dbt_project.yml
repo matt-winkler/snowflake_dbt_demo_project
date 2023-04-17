@@ -49,7 +49,7 @@ vars:
 
 # in dbt_project.yml
 snapshots:
-  +target_schema: default
+  +target_schema: default_schema
 
 models:   
   tpch:
