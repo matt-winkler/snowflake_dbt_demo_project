@@ -50,7 +50,7 @@ vars:
 # in dbt_project.yml
 snapshots:
   tpch:
-    +target_schema: "{{target.schema}}_tpch_snapshots"
+    +target_schema: "{{target.schema ~ '_' if target.name != 'prod'}}tpch_snapshots"
 
 models:   
   tpch:
