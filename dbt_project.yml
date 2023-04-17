@@ -49,7 +49,8 @@ vars:
 
 # in dbt_project.yml
 snapshots:
-  +target_schema: default_schema
+  tpch:
+    +target_schema: "{{target.schema}}_tpch_snapshots"
 
 models:   
   tpch:

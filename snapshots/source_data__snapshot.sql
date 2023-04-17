@@ -4,8 +4,7 @@
         config(
             unique_key='id',
             strategy='timestamp',
-            updated_at='updated_at',
-            target_schema=generate_schema_name('tpch_snapshots')
+            updated_at='updated_at'
         )
     }}
 
