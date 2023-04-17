@@ -1,3 +1,10 @@
+{{
+    config(
+        schema='mw_test',
+        database='analytics'
+    )
+}}
+
 with source as (
 
     select * from {{ source('tpch', 'supplier') }}

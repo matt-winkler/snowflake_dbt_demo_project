@@ -1,7 +1,8 @@
 {{
     config(
-        enabled=false,
-        severity='warn',
+        enabled=true,
+        schema='analytics',
+        database='analytics_mwinkler_dbt_workspace',
         tags = ['finance']
     )
 }}

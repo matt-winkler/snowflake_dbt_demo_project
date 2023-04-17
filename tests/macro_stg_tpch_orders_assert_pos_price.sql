@@ -1,6 +1,8 @@
 {{
     config(
         enabled=true,
+        schema='dbt_test__audit',
+        database='ANALYTICS',
         severity='error',
         tags = ['finance']
     )
