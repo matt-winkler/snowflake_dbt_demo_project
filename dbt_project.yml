@@ -49,12 +49,11 @@ vars:
 
 # in dbt_project.yml
 snapshots:
-  tpch:
-    +target_schema: salesops_sandbox
+  +target_schema: default
 
 models:   
   tpch:
-    +schema: salesops_sandbox
+    +schema: tpch
     demo_examples:
       custom_alias_and_schema:
         +schema: my_schema
