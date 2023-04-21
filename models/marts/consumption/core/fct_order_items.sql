@@ -39,10 +39,10 @@ final as (
         part_supplier.nation_key,
         1 as order_item_count,
         order_item.quantity,
-        order_item.gross_item_sales_amount,
-        order_item.discounted_item_sales_amount,
-        order_item.item_discount_amount,
-        order_item.item_tax_amount,
+        order_item.gross_item_sales_amount as gross_item_sales,
+        order_item.discounted_item_sales_amount as discounted_item_sales,
+        order_item.item_discount_amount as item_discount,
+        order_item.item_tax_amount as item_tax,
         order_item.net_item_sales_amount as net_item_sales
 
     from
