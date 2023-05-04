@@ -1,8 +1,0 @@
-version: 2
-
-models:
-  - name: fct_revenue_summary_history
-    columns:
-      - name: year
-        tests:
-          - unique
