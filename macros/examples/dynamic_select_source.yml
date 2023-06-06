@@ -1,0 +1,9 @@
+
+version: 2
+
+sources:
+  - name: information_schema
+    database: analytics
+    schema: information_schema
+    tables:
+      - name: columns
