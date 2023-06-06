@@ -15,7 +15,8 @@
      {%- if value_list and value_list['data'] -%}
         {%- set values = value_list['data'] | map(attribute=0) | list %}
      {{ return(values) }}
-     {%- endif -%}
+  
+  {%- endif -%}
 
   {% endif %}
 
