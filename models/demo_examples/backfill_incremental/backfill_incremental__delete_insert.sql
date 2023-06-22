@@ -18,7 +18,8 @@
         incremental_predicates=["order_date >= " ~ "'" ~ var('demo__backfill_incremental__start_date') ~ "'", 
                                 "order_date <= " ~ "'" ~ var('demo__backfill_incremental__end_date') ~ "'"
                                 ],
-        cluster_by='order_date'
+        cluster_by='order_date',
+        on_schema_change='sync_all_columns'
     )
 }}
 
