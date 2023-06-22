@@ -1,4 +1,10 @@
-{{ config(materialized='incremental') }}
+{{ 
+    config(
+        materialized='incremental',
+        unique_key='customer_key',
+        incremental_strategy='merge'
+    ) 
+}}
 
 with source as (
 
@@ -27,6 +33,7 @@ select * from renamed
 
 {% if is_incremental() %}
   -- this filter will only be applied on an incremental run
+  -- also commonly done using date logic
   where customer_key not in (select customer_key from {{this}} )
 
 {% endif %}
