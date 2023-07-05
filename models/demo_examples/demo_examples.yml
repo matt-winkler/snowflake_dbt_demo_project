@@ -1,14 +1,6 @@
 version: 2
 
 models:
-  - name: materialization_incremental
-    description: demo to show incremental model
-    columns:
-      - name: customer_key
-        tests:
-          - unique
-          - not_null
-
   - name: use_variables
     description: demo to show variables
     columns:
@@ -16,7 +8,4 @@ models:
         tests:
           - unique
           - not_null 
-
-  - name: get_area_of_circle
-    description: demo to show udfs
         
