@@ -17,6 +17,11 @@ order_item as (
 
 ),
 
+customers as (
+    select * from {{ ref('dim_customers')}}
+),
+
+
 order_item_summary as (
 
     select
@@ -39,6 +44,7 @@ final as (
         orders.order_date,
         orders.customer_key,
         -- uncomment here and the join below to demonstrate pulling the region into the fct_orders model
+        customers.region as customer_region,
         orders.status_code,
         orders.priority_code,
         orders.clerk_name,
@@ -53,6 +59,8 @@ final as (
         orders
     inner join order_item_summary
         on orders.order_key = order_item_summary.order_key
+    inner join customers
+        on orders.customer_key = customers.customer_key
 )
 
 select *
