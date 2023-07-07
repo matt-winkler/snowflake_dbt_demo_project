@@ -1,0 +1,7 @@
+.github/
+analysis/
+dbt_packages/
+target/
+macros/
+
+.gitignore
