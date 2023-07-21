@@ -1,6 +1,75 @@
 version: 2
 
+groups:
+  - name: finance
+    owner:
+      name: Financial analytics team
+      email: matt.winkler@dbtlabs.com
+
 models:
+  - name: fct_orders
+    description: orders fact table
+    config:
+      contract:
+        enforced: true
+    group: finance
+    access: public
+    columns:
+      - name: gross_item_sales_amount
+        data_type: numeric
+        tests:
+          - orders__assert_positive_price
+      - name: order_key
+        data_type: int
+        description: primary key of the model
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        data_type: int
+        description: foreign key for customers
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+              severity: error
+      - name: order_date
+        data_type: date
+        description: date of the order
+      - name: status_code
+        data_type: text
+        description: status of the order
+      - name: priority_code
+        data_type: text
+        description: code associated with the order
+      - name: clerk_name
+        data_type: text
+        description: id of the clerk
+      - name: ship_priority
+        data_type: numeric
+        description: numeric representation of the shipping priority, zero being the default
+      - name: order_count
+        data_type: int
+        description: number of orders (includes returns)
+      - name: return_count
+        data_type: int
+        description: How many line items have the return flag in this order?
+      - name: gross_item_sales_amount
+        data_type: numeric
+        description: '{{ doc("gross_item_sales_amount") }}'
+      - name: item_discount_amount
+        data_type: numeric
+        description: '{{ doc("item_discount_amount") }}'
+      - name: item_tax_amount
+        data_type: numeric
+        description: '{{ doc("item_tax_amount") }}'
+      - name: net_item_sales_amount
+        data_type: numeric
+        description: '{{ doc("net_item_sales_amount") }}'
+      - name: region
+        data_type: text
+        description: customer region from dim_customers
+    
   - name: dim_customers
     description: Customer dimensions table
     columns:
@@ -127,47 +196,6 @@ models:
         description: '{{ doc("gross_item_sales_amount") }}'
       - name: discounted_item_sales_amount
         description: '{{ doc("discounted_item_sales_amount") }}'
-      - name: item_discount_amount
-        description: '{{ doc("item_discount_amount") }}'
-      - name: item_tax_amount
-        description: '{{ doc("item_tax_amount") }}'
-      - name: net_item_sales_amount
-        description: '{{ doc("net_item_sales_amount") }}'
-  
-  - name: fct_orders
-    description: orders fact table
-    columns:
-      - name: gross_item_sales_amount
-        tests:
-          - orders__assert_positive_price
-      - name: order_key
-        description: primary key of the model
-        tests:
-          - unique
-          - not_null
-      - name: customer_key
-        description: foreign key for customers
-        tests:
-          - relationships:
-              to: ref('dim_customers')
-              field: customer_key
-              severity: error
-      - name: order_date
-        description: date of the order
-      - name: status_code
-        description: status of the order
-      - name: priority_code
-        description: code associated with the order
-      - name: clerk_name
-        description: id of the clerk
-      - name: ship_priority
-        description: numeric representation of the shipping priority, zero being the default
-      - name: order_count
-        description: number of orders (includes returns)
-      - name: return_count
-        description: How many line items have the return flag in this order?
-      - name: gross_item_sales_amount
-        description: '{{ doc("gross_item_sales_amount") }}'
       - name: item_discount_amount
         description: '{{ doc("item_discount_amount") }}'
       - name: item_tax_amount
