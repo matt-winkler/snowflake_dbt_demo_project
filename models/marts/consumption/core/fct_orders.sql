@@ -19,7 +19,9 @@ order_item as (
 ),
 
 customers as (
+
     select * from {{ ref('dim_customers') }}
+
 ),
 
 order_item_summary as (
