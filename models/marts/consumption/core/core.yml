@@ -66,6 +66,9 @@ models:
       - name: net_item_sales_amount
         data_type: numeric
         description: '{{ doc("net_item_sales_amount") }}'
+      - name: region
+        data_type: text
+        description: customer region from dim_customers
     
   - name: dim_customers
     description: Customer dimensions table
