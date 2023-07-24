@@ -48,7 +48,6 @@ models:
 
     marts:
       +group: hub
-      +access: private
       raw:
         +materialized: view
       intermediate:
@@ -56,7 +55,6 @@ models:
       consumption:
         materialized: table
         core:
-          +access: public
           +required_docs: true
           +required_tests:
             "unique": 1
