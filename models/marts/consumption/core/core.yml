@@ -1,19 +1,11 @@
 version: 2
 
-groups:
-  - name: finance
-    owner:
-      name: Financial analytics team
-      email: matt.winkler@dbtlabs.com
-
 models:
   - name: fct_orders
     description: orders fact table
     config:
       contract:
         enforced: true
-    group: finance
-    access: public
     columns:
       - name: gross_item_sales_amount
         data_type: numeric
