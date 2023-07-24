@@ -32,7 +32,7 @@ on-run-end:
   - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
 
 vars:
-  start_date: '1999-01-01'
+  start_date: '1999-01-02'
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
