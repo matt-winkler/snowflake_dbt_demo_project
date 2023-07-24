@@ -50,10 +50,11 @@ models:
       +group: hub
       raw:
         +materialized: view
+        +database: "{{var('my_database', 'default')}}"
       intermediate:
         +materialized: view
       consumption:
-        materialized: table
+        +materialized: table
         core:
           +required_docs: true
           +required_tests:
