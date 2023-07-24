@@ -66,6 +66,6 @@ models:
             +required_tests:
               "orders__assert_positive_price": 1
   
-  dbt_project_evaluator:
-    +database: dbt_project_evaluator
-    +schema: snowflake_hub
+  #dbt_project_evaluator:
+  #  +database: dbt_project_evaluator
+  #  +schema: snowflake_hub
