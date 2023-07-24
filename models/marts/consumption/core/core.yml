@@ -3,6 +3,7 @@ version: 2
 models:
   - name: fct_orders
     description: orders fact table
+    access: public
     config:
       contract:
         enforced: true
