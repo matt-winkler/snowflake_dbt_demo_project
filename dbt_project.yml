@@ -26,8 +26,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 on-run-start:
   - "alter warehouse transforming set warehouse_size=small;"
-  #- "{{dbt_meta_testing.required_tests()}}"
-  # - '{{create_udfs()}}' # comment / uncomment this line to build UDFs called in the create_udfs macro
 
 on-run-end:
   - "alter warehouse transforming set warehouse_size=xsmall;"
@@ -39,13 +37,7 @@ vars:
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
 
-
-# Configuring models
-# Full documentation: https://docs.getdbt.com/docs/configuring-models
-
-
 models:
-     
   snowflake_hub:
     
     demo_examples:
@@ -73,10 +65,7 @@ models:
           fct_orders:
             +required_tests:
               "orders__assert_positive_price": 1
-            
-# seeds:
-#   tpch:
-#     snowflake_contract_rates:
-#       +column_types:
-#         effective_date: DATE
-#         rate: NUMBER   
+  
+  dbt_project_evaluator:
+    +database: dbt_project_evaluator
+    +schema: snowflake_hub

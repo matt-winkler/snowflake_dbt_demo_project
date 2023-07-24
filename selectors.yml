@@ -1,5 +1,5 @@
 selectors:
-  - name: this_project
+  - name: snowflake_hub
     description: >
         Only resources from the current project.
         Excludes resources defined in installed packages, including upstream dbt projects!
@@ -7,11 +7,3 @@ selectors:
     definition:
       method: package
       value: snowflake_hub
-    
-  - name: dbt_project_evaluator
-    description: >
-        Only resources from the dbt_project_evaluator package.
-    definition:
-      method: package
-      value: dbt_projet_evaluator
-    
