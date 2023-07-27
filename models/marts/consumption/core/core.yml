@@ -47,6 +47,9 @@ models:
       - name: return_count
         data_type: int
         description: How many line items have the return flag in this order?
+      - name: total_price
+        data_type: numeric
+        description: aggregated price for the order
       - name: gross_item_sales_amount
         data_type: numeric
         description: '{{ doc("gross_item_sales_amount") }}'
@@ -137,6 +140,7 @@ models:
  
   - name: fct_order_items
     description: order items fact table
+    access: public
     columns:
       - name: order_item_key
         description: '{{ doc("order_item_key") }}'
