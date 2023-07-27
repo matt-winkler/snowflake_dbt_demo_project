@@ -47,6 +47,9 @@ models:
       - name: return_count
         data_type: int
         description: How many line items have the return flag in this order?
+      - name: total_price
+        data_type: numeric
+        description: aggregated price for the order as a whole
       - name: gross_item_sales_amount
         data_type: numeric
         description: '{{ doc("gross_item_sales_amount") }}'
