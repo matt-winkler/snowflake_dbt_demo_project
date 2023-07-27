@@ -95,7 +95,7 @@ models:
               values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
               severity: warn
       - name: name
-        data_type: int
+        data_type: text
         description: customer id
       - name: address
         data_type: text
