@@ -140,7 +140,6 @@ models:
  
   - name: fct_order_items
     description: order items fact table
-    access: public
     columns:
       - name: order_item_key
         description: '{{ doc("order_item_key") }}'
