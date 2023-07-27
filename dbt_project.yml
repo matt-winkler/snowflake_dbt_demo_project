@@ -45,15 +45,16 @@ models:
         #+post-hook: 
           #- "{{validate_model_name(this, ruleset='demos')}}"
           #- "{{validate_column_names(this)}}"
-
+    
+    raw:
+      +materialized: view
     marts:
       +group: hub
-      raw:
-        +materialized: view
+        
       intermediate:
         +materialized: view
       consumption:
-        materialized: table
+        +materialized: table
         core:
           +required_docs: true
           +required_tests:
