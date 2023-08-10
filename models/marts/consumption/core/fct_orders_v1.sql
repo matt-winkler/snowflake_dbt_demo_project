@@ -1,4 +1,9 @@
-{{ config(materialized = 'view', tags=['finance']) }}
+{{ 
+    config(
+        materialized = 'view', 
+        tags=['finance', 'daily']
+    ) 
+}}
 
 {% set fact_orders_v0 = ref('fct_orders', v=0) %}
 

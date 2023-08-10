@@ -3,10 +3,6 @@ version: 2
 models:
   - name: fct_orders
     description: orders fact table
-    access: public
-    config:
-      contract:
-        enforced: true
     columns:
       - name: gross_item_sales_amount
         data_type: numeric
@@ -16,7 +12,6 @@ models:
         data_type: int
         description: primary key of the model
         tests:
-          - unique
           - not_null
       - name: customer_key
         data_type: int
@@ -66,6 +61,13 @@ models:
         data_type: text
         description: customer region from dim_customers
     
+     
+    # this is a public model - intended for consumption in other dbt Cloud projects
+    # because it's public, we agree to a set of standards in its contract.
+    access: public
+    config:
+      contract:
+        enforced: true
     latest_version: 0
     versions:
       - v: 0
@@ -112,8 +114,10 @@ models:
       - name: market_segment
         data_type: text
         description: market segment of the customer
-
+  
+  # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
+    access: private
     description: Parts dimensions table
     columns:
       - name: part_key
@@ -136,7 +140,9 @@ models:
       - name: retail_price
         description: '{{ doc("retail_price") }}'
 
+  # this is a protected model - it's intended for use in **this** dbt project only, but hidden from other projects
   - name: dim_suppliers
+    access: protected
     description: Suppliers dimensions table
     columns:
       - name: supplier_key

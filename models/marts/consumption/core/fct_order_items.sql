@@ -1,14 +1,17 @@
 {{
     config(
         materialized = 'table',
-        tags = ['finance']
+        tags = ['finance', 'daily'],
+        grants = {
+            '+select': ['reporter']
+        }
     )
 }}
 
 with order_item as (
-    
-    select * from {{ ref('order_items') }}
 
+    select * from {{ ref('order_items') }}
+    
 ),
 part_supplier as (
     

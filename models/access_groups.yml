@@ -1,6 +1,6 @@
 version: 2
 
 groups:
-  - name: hub
+  - name: customer360
     owner:
-      email: matt.winkler@dbtlabs.com
+      email: customer360.maintainers@org.com

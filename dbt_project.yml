@@ -48,8 +48,9 @@ models:
     
     raw:
       +materialized: view
+    
     marts:
-      +group: hub
+      +group: customer360
         
       intermediate:
         +materialized: view
@@ -64,7 +65,7 @@ models:
           fct_orders:
             +required_tests:
               "orders__assert_positive_price": 1
-  
+
   #dbt_project_evaluator:
   #  +database: dbt_project_evaluator
   #  +schema: snowflake_hub
