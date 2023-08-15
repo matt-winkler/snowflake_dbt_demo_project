@@ -1,6 +1,6 @@
 version: 2
 
 groups:
-  - name: customer360
+  - name: hub
     owner:
-      email: customer360.maintainers@org.com
+      email: hub.maintainers@org.com

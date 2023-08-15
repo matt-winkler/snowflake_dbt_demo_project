@@ -51,7 +51,7 @@ models:
       +materialized: view
     
     marts:
-      +group: customer360
+      +group: hub
         
       intermediate:
         +materialized: view
