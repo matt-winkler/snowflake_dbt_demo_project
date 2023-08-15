@@ -30,6 +30,7 @@ on-run-start:
 on-run-end:
   - "alter warehouse transforming set warehouse_size=xsmall;"
   - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
+  - "{{truncate_all_tables_in_schema(schema_name='testschema')}}"
 
 vars:
   start_date: '1999-01-02'
@@ -50,7 +51,7 @@ models:
       +materialized: view
     
     marts:
-      +group: customer360
+      +group: hub
         
       intermediate:
         +materialized: view

@@ -4,7 +4,7 @@
         tags = ['finance', 'daily'],
         grants = {
             '+select': ['reporter']
-        }
+        },
     )
 }}
 
@@ -18,6 +18,7 @@ part_supplier as (
     select * from {{ ref('part_suppliers') }}
 
 ),
+
 final as (
     select 
         order_item.order_item_key,
