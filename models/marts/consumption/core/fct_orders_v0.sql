@@ -4,7 +4,7 @@
         tags=['finance'],
         grants = {
             '+select': ['reporter']
-        }
+        },
     )
 }}
 
