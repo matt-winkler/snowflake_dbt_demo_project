@@ -5,7 +5,7 @@
         incremental_strategy='merge',
         unique_key='order_key',
         on_schema_change="fail",
-        snowflake_warehouse='test' if is_incremental() else 'other_test'
+        snowflake_warehouse=get_incremental_model_warehouse()
     )
 }}
 
