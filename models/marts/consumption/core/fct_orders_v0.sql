@@ -14,7 +14,7 @@ with orders as (
 
 ),
 
-order_item as (
+order_items as (
 
     select * from {{ ref('order_items') }}
 
@@ -52,15 +52,15 @@ final as (
         customers.region,
         1 as order_count,
         orders.total_price,
-        order_item_summary.return_count,
-        order_item_summary.gross_item_sales_amount,
-        order_item_summary.item_discount_amount,
-        order_item_summary.item_tax_amount,
-        order_item_summary.net_item_sales_amount
+        order_items.return_count,
+        order_items.gross_item_sales_amount,
+        order_items.item_discount_amount,
+        order_items.item_tax_amount,
+        order_items.net_item_sales_amount
     from
         orders
-    inner join order_item_summary
-        on orders.order_key = order_item_summary.order_key
+    inner join order_items
+        on orders.order_key = order_items.order_key
     inner join customers
         on orders.customer_key = customers.customer_key
 )
