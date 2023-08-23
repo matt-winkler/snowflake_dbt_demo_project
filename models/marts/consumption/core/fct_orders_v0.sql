@@ -33,7 +33,7 @@ order_item_summary as (
         sum(item_tax_amount) as item_tax_amount,
         sum(net_item_sales_amount) as net_item_sales_amount,
         count_if(return_flag = 'returned') as return_count
-    from order_item
+    from order_items
     group by
         1
 ),
@@ -52,15 +52,15 @@ final as (
         customers.region,
         1 as order_count,
         orders.total_price,
-        order_items.return_count,
-        order_items.gross_item_sales_amount,
-        order_items.item_discount_amount,
-        order_items.item_tax_amount,
-        order_items.net_item_sales_amount
+        order_item_summary.return_count,
+        order_item_summary.gross_item_sales_amount,
+        order_item_summary.item_discount_amount,
+        order_item_summary.item_tax_amount,
+        order_item_summary.net_item_sales_amount
     from
         orders
-    inner join order_items
-        on orders.order_key = order_items.order_key
+    inner join order_item_summary
+        on orders.order_key = order_item_summary.order_key
     inner join customers
         on orders.customer_key = customers.customer_key
 )
