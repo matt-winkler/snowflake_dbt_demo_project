@@ -21,10 +21,8 @@ order_item as (
 ),
 
 customers as (
-
-    select * from {{ ref('dim_customers') }}
-
-),
+    select * from {{ ref('dim_customers' )}}
+)
 
 order_item_summary as (
 
@@ -51,7 +49,7 @@ final as (
         orders.priority_code,
         orders.clerk_name,
         orders.ship_priority,
-        --customers.region,
+        customers.region,
         1 as order_count,
         orders.total_price,
         order_item_summary.return_count,
