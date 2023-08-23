@@ -22,7 +22,7 @@ order_items as (
 
 customers as (
     select * from {{ ref('dim_customers' )}}
-)
+),
 
 order_item_summary as (
 
