@@ -8,6 +8,7 @@
     )
 }}
 
+
 with order_item as (
 
     select * from {{ ref('order_items') }}
@@ -20,6 +21,7 @@ part_supplier as (
 ),
 
 final as (
+
     select 
         order_item.order_item_key,
         order_item.order_key,
