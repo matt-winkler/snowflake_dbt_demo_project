@@ -14,16 +14,14 @@ with orders as (
 
 ),
 
-order_item as (
+order_items as (
 
     select * from {{ ref('order_items') }}
 
 ),
 
 customers as (
-
-    select * from {{ ref('dim_customers') }}
-
+    select * from {{ ref('dim_customers' )}}
 ),
 
 order_item_summary as (
@@ -35,7 +33,7 @@ order_item_summary as (
         sum(item_tax_amount) as item_tax_amount,
         sum(net_item_sales_amount) as net_item_sales_amount,
         count_if(return_flag = 'returned') as return_count
-    from order_item
+    from order_items
     group by
         1
 ),
