@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: unpack_json
+    columns:
+      - name: id
+      - name: type
+        tests:
+          - accepted_values:
+              values: ['web', 'mobile']
+      - name: experiment_id
+      - name: experiment_page
+        tests:
+          - not_null
+              
