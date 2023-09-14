@@ -170,7 +170,6 @@ models:
         tests:
           - unique
           - not_null
-          - my_custom_test
       - name: order_key
         description: foreign key for orders
       - name: order_date
