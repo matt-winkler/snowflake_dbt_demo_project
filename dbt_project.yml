@@ -32,15 +32,19 @@ on-run-end:
   - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
 
 vars:
-  start_date: '1999-01-02'
+  start_date: '2023-01-01'
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
+  db: vars_database
+  sch: vars_schema
 
 models:
   snowflake_hub:
     
     demo_examples:
+      +database: '{{var("db", "default_database")}}'
+      +schema: '{{var("sch", "default_schema")}}'
       audit:
         #+post-hook: 
           #- "{{validate_model_name(this, ruleset='demos')}}"
