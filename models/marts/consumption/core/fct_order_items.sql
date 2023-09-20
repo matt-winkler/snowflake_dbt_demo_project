@@ -8,7 +8,6 @@
     )
 }}
 
-
 with order_item as (
 
     select * from {{ ref('order_items') }}
@@ -38,7 +37,7 @@ final as (
         order_item.ship_mode,
         part_supplier.cost as supplier_cost,
         {# ps.retail_price, #}
-        part_supplier.retail_price,
+        --part_supplier.retail_price,
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
