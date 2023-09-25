@@ -54,7 +54,7 @@ models:
       +materialized: view
 
     marts:
-      +group: hub
+      +group: my_awesome_group
         
       intermediate:
         +materialized: view
