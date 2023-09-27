@@ -54,6 +54,7 @@ models:
       +materialized: view
 
     marts:
+
       +group: matts_awesome_group
         
       intermediate:
