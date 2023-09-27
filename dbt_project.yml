@@ -55,7 +55,7 @@ models:
 
     marts:
 
-      +group: matts_awesome_group
+      +group: matts_awesome_group_name
         
       intermediate:
         +materialized: view
