@@ -36,15 +36,15 @@ vars:
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
-  db: vars_database
-  sch: vars_schema
+  #db: vars_database
+  #sch: vars_schema
 
 models:
   snowflake_hub:
     
     demo_examples:
-      +database: '{{var("db", "default_database")}}'
-      +schema: '{{var("sch", "default_schema")}}'
+      #+database: '{{var("db", "default_database")}}'
+      #+schema: '{{var("sch", "default_schema")}}'
       audit:
         #+post-hook: 
           #- "{{validate_model_name(this, ruleset='demos')}}"
@@ -54,7 +54,7 @@ models:
       +materialized: view
 
     marts:
-      +group: hub
+      +group: matts_awesome_group
         
       intermediate:
         +materialized: view
