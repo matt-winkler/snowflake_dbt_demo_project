@@ -1,6 +1,6 @@
 version: 2
 
 groups:
-  - name: hub
+  - name: matts_awesome_group_name
     owner:
       email: hub.maintainers@org.com
