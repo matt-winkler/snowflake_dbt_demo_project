@@ -1,6 +1,9 @@
 version: 2
 
 models:
+  - name: thing
+    meta:
+      foo: bar
   - name: use_variables
     description: demo to show variables
     columns:
