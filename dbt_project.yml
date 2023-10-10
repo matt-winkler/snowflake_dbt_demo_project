@@ -36,8 +36,8 @@ vars:
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
-  db: vars_database
-  sch: vars_schema
+  db: analytics
+  sch: dbt_mwinkler
 
 models:
   snowflake_hub:
