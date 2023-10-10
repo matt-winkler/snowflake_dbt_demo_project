@@ -83,36 +83,39 @@ models:
         enforced: true
     columns:
       - name: customer_key
-        data_type: int
-        description: Primary key on the customers table
         tests:
           - unique
           - not_null
+        data_type: number
+        description: ""
+
       - name: region
-        data_type: text
-        description: region name
-        tests:
-          - accepted_values:
-              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
-              severity: warn
+        data_type: varchar
+        description: ""
+
       - name: name
-        data_type: text
-        description: customer id
+        data_type: varchar
+        description: ""
+
       - name: address
-        data_type: text
-        description: address of the customer
+        data_type: varchar
+        description: ""
+
       - name: nation
-        data_type: text
-        description: nation name
+        data_type: varchar
+        description: ""
+
       - name: phone_number
-        data_type: text
-        description: phone number of the customer
+        data_type: varchar
+        description: ""
+
       - name: account_balance
-        data_type: numeric
-        description: '{{ doc("account_balance") }}'
+        data_type: number
+        description: ""
+
       - name: market_segment
-        data_type: text
-        description: market segment of the customer
+        data_type: varchar
+        description: ""
   
   # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
