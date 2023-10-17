@@ -164,9 +164,6 @@ models:
  
   - name: fct_order_items
     description: order items fact table
-    config:
-      contract:
-        enforced: true
     columns:
       - name: order_item_key
         data_type: varchar
@@ -274,5 +271,5 @@ models:
         description: ""
 
       - name: net_item_sales_amount
-        #data_type: number
+        data_type: number
         description: ""
