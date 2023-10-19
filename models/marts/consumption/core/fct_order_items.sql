@@ -38,7 +38,7 @@ final as (
         part_supplier.cost as supplier_cost,
         {# ps.retail_price, #}
         part_supplier.retail_price,
-        ---'bbb' as test,
+        'bbb' as test,
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
