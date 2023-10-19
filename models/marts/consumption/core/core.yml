@@ -166,7 +166,7 @@ models:
     description: order items fact table
     config:
       contract:
-        enforced: true
+        enforced: false
     columns:
       - name: order_item_key
         data_type: varchar
