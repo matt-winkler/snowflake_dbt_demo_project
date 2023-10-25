@@ -3,7 +3,7 @@
         materialized = 'table',
         tags = ['finance', 'daily'],
         grants = {
-            '+select': ['reporter']
+            '+select': ['reporter', 'data_science']
         },
     )
 }}
