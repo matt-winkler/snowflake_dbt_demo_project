@@ -1,0 +1,8 @@
+version: 2 
+
+models:
+  - name: my_tagged_model
+    description: a model that has tags on it
+    columns:
+      - name: col
+        tags: ['contains_pii=true']

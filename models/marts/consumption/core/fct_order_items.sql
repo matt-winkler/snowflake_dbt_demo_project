@@ -2,6 +2,7 @@
     config(
         materialized = 'table',
         tags = ['finance', 'daily'],
+        snowflake_warehouse='TRANSFORMING',
         grants = {
             '+select': ['reporter']
         },

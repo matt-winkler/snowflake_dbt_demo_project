@@ -50,6 +50,8 @@ models:
       consumption:
         +materialized: table
         core:
+          +pre-hook:
+            - "{{explain_sql(model.compiled_code)}}"
           +required_docs: true
           +required_tests:
             "unique": 1
