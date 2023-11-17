@@ -33,8 +33,6 @@
         );
      {% endset %}
   
-     {# {{run_query(create_tmp_table_sql)}} #}
-  
      {% set alter_snapshot_sql %}
         update {{snapshot.database}}.{{snapshot.schema}}.{{snapshot.name}} target
           set target.dbt_valid_to = tmp.dbt_valid_to,
@@ -45,7 +43,6 @@
         ;
      {% endset %}
   
-     {# {{run_query(alter_snapshot_sql)}} #}
      {% set final_sql %}
         {{create_tmp_table_sql}} 
         {{alter_snapshot_sql}}
