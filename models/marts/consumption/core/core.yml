@@ -77,7 +77,6 @@ models:
     
   - name: dim_customers
     description: Customer dimensions table
-    access: public
     config:
       contract:
         enforced: true
@@ -116,7 +115,6 @@ models:
   
   # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
-    access: private
     description: Parts dimensions table
     columns:
       - name: part_key
@@ -141,7 +139,6 @@ models:
 
   # this is a protected model - it's intended for use in **this** dbt project only, but hidden from other projects
   - name: dim_suppliers
-    access: protected
     description: Suppliers dimensions table
     columns:
       - name: supplier_key
@@ -196,6 +193,10 @@ models:
         description: '{{ doc("ship_mode") }}'
       - name: supplier_cost
         description: '{{ doc("cost") }}'
+      - name: retail_price
+        description: the manufacturer suggested retail price of the item (MSRP)
+        #tests:
+        #  - not_null
       - name: base_price
         description: '{{ doc("base_price") }}'
       - name: discount_percentage
@@ -204,10 +205,6 @@ models:
         description: '{{ doc("discounted_price") }}'
       - name: tax_rate
         description: '{{ doc("tax_rate") }}'
-      - name: nation_key
-        description: 'Nation key'
-        tests:
-         - not_null
       - name: order_item_count
         description: count of order items
       - name: quantity
