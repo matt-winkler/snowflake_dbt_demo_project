@@ -30,6 +30,9 @@ models:
       - name: priority_code
         data_type: text
         description: code associated with the order
+        tests:
+          - accepted_values:
+              values: ['a','b','c']
       - name: clerk_name
         data_type: text
         description: id of the clerk

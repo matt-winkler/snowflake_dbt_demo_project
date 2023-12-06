@@ -1,8 +1,3 @@
-{{ config(
-    tags=["finance"]
-) }}
-
-
 {% macro centralize_test_failures(results) %}
   {# --add "{{ centralize_test_failures(results) }}" to an on-run-end: block in dbt_project.yml #}
   {# --run with dbt build --store-failures. #}
@@ -43,7 +38,7 @@
   {% if target.name != 'default' %}
       create table if not exists {{ history_tbl }} as (
         select 
-          {{ dbt_utils.surrogate_key(["test_name", "test_failures_json", "_timestamp"]) }} as sk_id, 
+          {{ dbt_utils.generate_surrogate_key(["test_name", "test_failures_json", "_timestamp"]) }} as sk_id, 
           * 
         from {{ central_tbl }}
         where false
@@ -51,7 +46,7 @@
 
     insert into {{ history_tbl }} 
       select 
-       {{ dbt_utils.surrogate_key(["test_name", "test_failures_json", "_timestamp"]) }} as sk_id, 
+       {{ dbt_utils.generate_surrogate_key(["test_name", "test_failures_json", "_timestamp"]) }} as sk_id, 
        * 
       from {{ central_tbl }}
     ;

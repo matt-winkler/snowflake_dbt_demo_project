@@ -24,12 +24,9 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
-on-run-start:
-  - "alter warehouse transforming set warehouse_size=small;"
-
 on-run-end:
-  - "alter warehouse transforming set warehouse_size=xsmall;"
   - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
+  - "{{ centralize_test_failures(results) }}"
 
 vars:
   start_date: '2023-01-01'
@@ -69,7 +66,3 @@ models:
           fct_orders:
             +required_tests:
               "orders__assert_positive_price": 1
-
-  #dbt_project_evaluator:
-  #  +database: dbt_project_evaluator
-  #  +schema: snowflake_hub
