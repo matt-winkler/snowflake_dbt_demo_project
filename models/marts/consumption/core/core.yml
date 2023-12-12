@@ -61,20 +61,6 @@ models:
         data_type: text
         description: customer region from dim_customers
      
-    # this is a public model - intended for consumption in other dbt Cloud projects
-    # because it's public, we agree to a set of standards in its contract.
-    access: public
-    config:
-      contract:
-        enforced: true
-    latest_version: 0
-    versions:
-      - v: 0
-      - v: 1
-        columns:
-          - include: all
-            exclude: [total_price]
-    
   - name: dim_customers
     description: Customer dimensions table
     access: public

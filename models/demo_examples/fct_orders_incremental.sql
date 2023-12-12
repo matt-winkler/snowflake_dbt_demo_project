@@ -9,10 +9,10 @@
     )
 }}
 
-{% set columns = dynamic_select_columns(node=ref("fct_orders", v='0')) %}
+{% set columns = dynamic_select_columns(node=ref("fct_orders")) %}
 
 select
     {% for col in columns %}
         {{ col }}{%- if not loop.last -%}, {%- endif -%}
     {% endfor %}
-from {{ ref("fct_orders", v='0') }}
+from {{ ref("fct_orders") }}
