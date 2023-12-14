@@ -37,8 +37,8 @@ sources:
             description: id of the clerk
           - name: o_shippriority
             description: numeric representation of the shipping priority, zero being the default
-          - name: o_comment
-            description: '{{ doc("comment") }}'
+          #- name: o_comment
+          #  description: '{{ doc("comment") }}'
           
       - name: customer
         description: main customer table
