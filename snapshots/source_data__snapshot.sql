@@ -26,16 +26,15 @@
 
 with upstream_data as (
     -- run 1
-    
+    /*
     select 1 as id, 'foo' as col1, '2023-01-01 00:00:00' as updated_at union all
     select 2 as id, 'bar' as col1, '2023-01-01 00:00:00' as updated_at union all
     select 3 as id, 'baz' as col1, '2023-01-01 00:00:00' as updated_at
+    */
 
     -- run 2
-    /*
     select 1 as id, 'qaa' as col1, '2023-01-02 00:00:00' as updated_at union all 
     select 1 as id, 'qux' as col1, '2023-01-03 00:00:00' as updated_at
-    */
 
     -- run 3
     --select 1 as id, 'qaz' as col1, '2023-01-04 00:00:00' as updated_at
