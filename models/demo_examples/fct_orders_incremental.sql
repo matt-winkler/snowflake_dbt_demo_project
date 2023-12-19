@@ -9,6 +9,8 @@
     )
 }}
 
+{# trigger Codeowners #}
+
 {% set columns = dynamic_select_columns(node=ref("fct_orders", v='0')) %}
 
 select
