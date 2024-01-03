@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: model
+    columns:
+      - name: id
+        tests:
+          - unique:
+              config:
+                fail_calc: "sum(n_records)"
+      
+      
