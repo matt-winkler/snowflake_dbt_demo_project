@@ -1,6 +1,13 @@
 version: 2
 
 models:
+  - name: MTA_OPPTY_EXP_TABLEAU
+    columns:
+      - name: DRVD_REGN_NM
+        tests:
+          - accepted_values:
+              values: ["EMEA", "APAC", "JAPAN", "LATAM", "AMER", "Other"]
+
   - name: fct_orders
     description: orders fact table
     columns:
@@ -166,7 +173,7 @@ models:
     description: order items fact table
     config:
       contract:
-        enforced: false
+        enforced: true
     columns:
       - name: order_item_key
         data_type: varchar
@@ -196,7 +203,7 @@ models:
         description: ""
 
       - name: order_item_status_code
-        data_type: varchar
+        data_type: varchar(1)
         description: ""
 
       - name: return_flag
@@ -274,5 +281,5 @@ models:
         description: ""
 
       - name: net_item_sales_amount
-        #data_type: number
+        data_type: number
         description: ""

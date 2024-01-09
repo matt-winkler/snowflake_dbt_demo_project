@@ -31,6 +31,10 @@ on-run-end:
   - "alter warehouse transforming set warehouse_size=xsmall;"
   - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
 
+dispatch:
+  - macro_namespace: dbt_utils
+    search_order: ['snowflake_hub', 'dbt_utils']
+
 vars:
   start_date: '2023-01-01'
   'dbt_date:time_zone': 'America/Denver'
