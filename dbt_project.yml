@@ -36,19 +36,9 @@ vars:
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
-  db: analytics
-  sch: dbt_mwinkler
 
 models:
   snowflake_hub:
-    
-    demo_examples:
-      +database: '{{var("db", "default_database")}}'
-      +schema: '{{var("sch", "default_schema")}}'
-      audit:
-        #+post-hook: 
-          #- "{{validate_model_name(this, ruleset='demos')}}"
-          #- "{{validate_column_names(this)}}"
     
     raw:
       +materialized: view
