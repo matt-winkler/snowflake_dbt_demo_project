@@ -1,0 +1,8 @@
+
+models:
+  - name: upstream
+    description: an upstream model we want to check for data before insert to the target
+    tests:
+      - dbt_project_evaluator.is_empty:
+          severity: error
+          fail_calc: "n_records = 0"

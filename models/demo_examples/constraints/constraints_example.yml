@@ -1,0 +1,24 @@
+
+
+models:
+  - name: constraints_upstream
+    config: 
+      contract:
+        enforced: true
+
+    constraints:
+      - type: not_null # has no effect
+        columns: [id]
+      # - type: check
+      #   columns: [id]
+      #   expression: "where count(*) > 0"
+      
+    columns:
+      - name: id
+        data_type: int
+        constraints:
+          - type: not_null
+          # - type: check
+          #   expression: "where count(*) > 15"
+          
+      
