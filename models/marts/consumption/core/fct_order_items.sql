@@ -11,17 +11,19 @@
 with order_item as (
 
     select * from {{ ref('order_items') }}
-    
+
 ),
+
 part_supplier as (
-    
+
     select * from {{ ref('part_suppliers') }}
 
 ),
 
 final as (
 
-    select 
+    select
+
         order_item.order_item_key,
         order_item.order_key,
         order_item.order_date,
@@ -54,12 +56,13 @@ final as (
 
     from
         order_item
-        inner join part_supplier
-            on order_item.part_key = part_supplier.part_key and
-                order_item.supplier_key = part_supplier.supplier_key
+    inner join part_supplier
+        on order_item.part_key = part_supplier.part_key
+            and order_item.supplier_key = part_supplier.supplier_key
+    where order_date >= '{{var('start_date', '2024-01-01')}}'
 )
-select 
-    *
+
+select *
 from
     final
 order by
