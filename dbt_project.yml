@@ -24,12 +24,17 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
+dispatch:
+  - macro_namespace: elementary
+    search_order: ['snowflake_hub', 'elementary']
+
 on-run-start:
   - "alter warehouse transforming set warehouse_size=small;"
+  - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
 
 on-run-end:
   - "alter warehouse transforming set warehouse_size=xsmall;"
-  - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
+  - "{{ elementary.on_run_end() }}"
 
 vars:
   start_date: '2023-01-01'
@@ -38,12 +43,16 @@ vars:
   demo__backfill_incremental__end_date: '1998-08-02'
 
 models:
+  +copy_grants: True
+  elementary:
+    +schema: elementary
   snowflake_hub:
     
     raw:
       +materialized: view
 
     marts:
+      +copy_grants: False
       +group: matts_awesome_group_name 
         
       intermediate:

@@ -1,5 +1,3 @@
-version: 2
-
 models:
   - name: fct_orders
     description: orders fact table
@@ -165,6 +163,9 @@ models:
   - name: fct_order_items
     description: order items fact table
     config:
+      access: public
+      grants:
+        +select: ['reporter']
       contract:
         enforced: false
     columns:

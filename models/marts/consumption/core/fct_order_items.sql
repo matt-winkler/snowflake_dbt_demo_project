@@ -2,9 +2,6 @@
     config(
         materialized = 'table',
         tags = ['finance', 'daily'],
-        grants = {
-            '+select': ['reporter']
-        },
     )
 }}
 
