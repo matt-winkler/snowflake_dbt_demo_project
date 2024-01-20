@@ -5,6 +5,7 @@
         grants = {
             '+select': ['reporter']
         },
+        pre_hook=show_model_config(model, graph)
     )
 }}
 
