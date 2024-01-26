@@ -26,10 +26,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 on-run-start:
   - "alter warehouse transforming set warehouse_size=small;"
+  - "{{ grant_usage_rights(database_schemas, 'transformer') }}"
 
 on-run-end:
   - "alter warehouse transforming set warehouse_size=xsmall;"
-  - "{{ grant_all_on_schemas(schemas, 'transformer') }}"
+  
 
 vars:
   start_date: '2023-01-01'
