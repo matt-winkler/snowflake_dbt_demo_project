@@ -1,5 +1,5 @@
 with root_project_model as (
-    select * from {{ref('fct_order_items')}}
+    select * from {{ref('select_from_root_package')}}
 ),
 
 package_import_model as (
