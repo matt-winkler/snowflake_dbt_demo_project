@@ -40,6 +40,10 @@ vars:
 
 models:
   snowflake_hub:
+
+    demo_examples:
+      target_schemas:
+        +schema: my_custom_schema
     
     raw:
       +materialized: view

@@ -1,0 +1,17 @@
+# saved_queries:
+#   - name: YOUR_QUERY
+#     description: YOUR_DESCRIPTION
+#     query_params:
+#       metrics:
+#         - YOUR_METRIC_NAME
+#       group_by:
+#         - TimeDimension()
+#         - ... # Additional group_by
+#       where:
+#         - ... # Additional where clauses
+#     exports:
+#       - name: YOUR_EXPORT
+#         config:
+#           export_as: table # Options available: table, view
+#           schema: YOUR_SCHEMA # Optional - defaults to deployment schema
+#           alias: SOME_TABLE_NAME # Optional - defaults to Export name
