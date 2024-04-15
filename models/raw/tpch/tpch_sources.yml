@@ -6,12 +6,14 @@ sources:
     database: raw
     schema: tpch_sf001
     freshness: # make this a warning as this is static data
-      warn_after: {count: 12, period: hour}
-    loaded_at_field: current_timestamp() - interval '6.3 hours' #this is for demo purposes
+      warn_after: {count: 4, period: hour}
+      error_after: {count: 8, period: hour}
+    loaded_at_field: current_timestamp() - interval '5 hours' # all sources not fress
     tables:
       - name: orders
         description: main order tracking table
-        
+        loaded_at_field: current_timestamp() - interval '5 hours'
+        tags: ['fct_order_items']
         columns:
           - name: o_orderkey
             description: SF*1,500,000 are sparsely populated
@@ -67,6 +69,8 @@ sources:
 
       - name: lineitem
         description: main lineitem table
+        loaded_at_field: current_timestamp() - interval '3 hours'
+        tags: ['fct_order_items']
         columns:
           - name: l_orderkey
             description: Foreign Key to O_ORDERKEY
@@ -142,6 +146,8 @@ sources:
 
       - name: part
         description: main part table
+        loaded_at_field: current_timestamp() - interval '3 hours'
+        tags: ['fct_order_items']
         columns:
           - name: p_partkey
             description: SF*200,000 are populated
@@ -169,6 +175,8 @@ sources:
 
       - name: partsupp
         description: main part supplier table
+        loaded_at_field: current_timestamp() - interval '3 hours'
+        tags: ['fct_order_items']
         columns:
           - name: ps_partkey
             description: Foreign Key to P_PARTKEY
@@ -206,6 +214,8 @@ sources:
 
       - name: supplier
         description: main supplier table
+        loaded_at_field: current_timestamp() - interval '3 hours'
+        tags: ['fct_order_items']
         columns:
           - name: s_suppkey
             description: SF*10,000 are populated
