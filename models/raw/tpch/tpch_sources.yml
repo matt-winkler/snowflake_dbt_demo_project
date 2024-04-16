@@ -6,8 +6,7 @@ sources:
     database: raw
     schema: tpch_sf001
     freshness: # make this a warning as this is static data
-      warn_after: {count: 4, period: hour}
-      error_after: {count: 8, period: hour}
+      error_after: {count: 4, period: hour}
     loaded_at_field: current_timestamp() - interval '5 hours' # all sources not fress
     tables:
       - name: orders
