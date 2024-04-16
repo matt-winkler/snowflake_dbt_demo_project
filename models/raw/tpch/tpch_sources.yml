@@ -11,7 +11,7 @@ sources:
     tables:
       - name: orders
         description: main order tracking table
-        loaded_at_field: current_timestamp() - interval '5 hours'
+        loaded_at_field: current_timestamp() - interval '3 hours'
         tags: ['fct_order_items']
         columns:
           - name: o_orderkey
