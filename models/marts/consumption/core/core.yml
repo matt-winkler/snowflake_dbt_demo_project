@@ -164,6 +164,11 @@ models:
  
   - name: fct_order_items
     description: order items fact table
+    tests:
+      - dbt_utils.recency:
+          datepart: hour
+          field: _etl_loaded_at_utc
+          interval: 4
     config:
       contract:
         enforced: false

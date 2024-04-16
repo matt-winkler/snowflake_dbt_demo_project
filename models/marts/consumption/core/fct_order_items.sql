@@ -1,7 +1,7 @@
 {{
     config(
         materialized = 'table',
-        tags = ['finance', 'daily'],
+        tags = ['finance', 'daily', 'monthly_gross_revenue_metric_deps'],
         grants = {
             '+select': ['reporter']
         },
@@ -50,7 +50,14 @@ final as (
         order_item.discounted_item_sales_amount,
         order_item.item_discount_amount,
         order_item.item_tax_amount,
-        order_item.net_item_sales_amount
+        order_item.net_item_sales_amount,
+       cast(
+        dateadd(
+          hour,
+          -3,
+          convert_timezone('UTC', current_timestamp()
+          )
+        ) as timestamp) as _etl_loaded_at_utc
 
     from
         order_item
