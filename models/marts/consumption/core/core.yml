@@ -77,10 +77,10 @@ models:
     
   - name: dim_customers
     description: Customer dimensions table
-    access: protected
+    access: public
     config:
       contract:
-        enforced: false
+        enforced: true
     columns:
       - name: customer_key
         data_type: int
@@ -113,9 +113,6 @@ models:
       - name: market_segment
         data_type: text
         description: market segment of the customer
-      - name: most_recent_order_date
-        data_type: date
-        description: the last time the customer ordered something
   
   # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
