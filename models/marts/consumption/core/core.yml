@@ -77,7 +77,7 @@ models:
     
   - name: dim_customers
     description: Customer dimensions table
-    access: public
+    access: protected
     config:
       contract:
         enforced: false
