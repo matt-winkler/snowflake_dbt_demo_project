@@ -8,34 +8,6 @@ models:
           - unique
 
 exposures:
-  
-  - name: monthly_gross_revenue
-    type: dashboard
-    maturity: high
-    url: https://fishtown.looker.com/dashboards/493
-    description:
-      Did someone say "exponential growth"?
-    depends_on: 
-      - ref('monthly_gross_revenue')
-    owner:
-      name: Business Operations Team 
-      email: bizops@dbtlabs.com
-  
-  - name: active_orders
-    type: dashboard
-    maturity: high
-    url: https://fishtown.looker.com/dashboards/493
-    description: 
-      Did someone say "exponential growth"?
-    
-    depends_on:
-      - ref('fct_orders')
-      - ref('dim_suppliers')
-      
-    owner:
-      name: Isabela 
-      email: isabela@dbtlabs.com
-
   - name: business_pulse
     type: dashboard
     maturity: high
@@ -44,9 +16,9 @@ exposures:
       Business Pulse for use by anyone looking to get insights on orders. 
     
     depends_on:
-      - ref('fct_orders')
-      - ref('dim_suppliers')
       - ref('dim_customers')
+      - ref('fct_orders')
+      - ref('monthly_gross_revenue')
 
     owner:
       name: Business Operations Team 
