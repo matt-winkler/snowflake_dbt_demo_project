@@ -116,7 +116,7 @@ models:
   
   # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
-    access: private
+    access: protected
     description: Parts dimensions table
     columns:
       - name: part_key
