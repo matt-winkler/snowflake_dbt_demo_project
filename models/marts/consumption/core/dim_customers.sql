@@ -43,8 +43,8 @@ final as (
         region.name as region,
         customer.phone_number,
         customer.account_balance,
-        customer.market_segment,
-        most_recent_order_date.most_recent_order_date
+        customer.market_segment
+        ,most_recent_order_date.most_recent_order_date
     from
         customer
         inner join nation
