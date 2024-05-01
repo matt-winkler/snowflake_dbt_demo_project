@@ -2,9 +2,10 @@
     config(
         materialized = 'table',
         transient=false,
-        tags=['customers', 'weekly']
+        tags=['customers', 'weekly'],
     )
 }}
+
 
 with customer as (
 
@@ -25,7 +26,6 @@ region as (
 
 
 most_recent_order_date as (
-
     select customer_key, min(order_date) as most_recent_order_date
     from   {{ref('fct_order_items')}}
     group by 1
