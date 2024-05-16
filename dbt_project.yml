@@ -50,15 +50,6 @@ models:
         +materialized: view
       consumption:
         +materialized: table
-        core:
-          +required_docs: true
-          +required_tests:
-            "unique": 1
-            "not_null": 1
-        
-          fct_orders:
-            +required_tests:
-              "orders__assert_positive_price": 1
 
   #dbt_project_evaluator:
   #  +database: dbt_project_evaluator
