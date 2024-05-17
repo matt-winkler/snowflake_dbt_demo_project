@@ -1,5 +1,6 @@
 version: 2
 
+
 models:
   - name: part_suppliers
     description: Intermediate model where we join part, supplier and part_supplier. This model is at the part supplier level.
