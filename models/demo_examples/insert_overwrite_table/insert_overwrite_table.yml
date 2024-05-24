@@ -1,0 +1,17 @@
+models:
+  - name: my_table
+    config:
+      contract:
+        enforced: true
+    constraints:
+      - type: unique
+        columns: [id]
+      - type: not_null # this one does not get enforced
+        columns: [bar]
+    columns:
+      - name: id
+        data_type: int
+      - name: bar
+        data_type: varchar(3)
+        constraints:
+          - type: not_null  # this one does
