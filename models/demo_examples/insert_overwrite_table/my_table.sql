@@ -1,12 +1,12 @@
 
 {{
   config(
-    materialized = 'table',
+    materialized = 'custom_table',
     insert_overwrite = True,
     on_schema_change = 'ignore'
     )
 }}
 
 select 1 as id, 'foo' as bar union all
-select 1 as id, 'foo' as bar union all
-select 1 as id, null as bar
+select 1 as id, 'foo' as bar 
+-- union all select 1 as id, null as bar

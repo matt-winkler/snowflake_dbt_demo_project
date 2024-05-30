@@ -1,0 +1,17 @@
+models:
+  - name: test_constraints_application
+    config:
+      contract:
+        enforced: true
+    constraints:
+      - type: unique
+        columns: [id]
+      - type: not_null # has no effect
+        columns: [bar]
+    columns:
+      - name: id
+        data_type: int
+      - name: bar
+        data_type: varchar(3)
+        constraints:
+          - type: not_null # works as expected
