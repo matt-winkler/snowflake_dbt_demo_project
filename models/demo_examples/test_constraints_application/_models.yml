@@ -1,16 +1,8 @@
 models:
   - name: test_constraints_application
-    # config:
-    #   contract:
-    #     enforced: true
-    # constraints:
-    #   - type: unique
-    #     columns: [id]
-    #   - type: not_null # has no effect
-    #     columns: [bar]
     columns:
       - name: id
         tests:
-          - test_apply_constraints
-        # constraints:
-        #   - type: not_null # works as expected
+          - custom_unique_check:
+              apply_as_constraint: True
+                
