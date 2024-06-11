@@ -1,0 +1,18 @@
+# see also the custom unique check example
+# can code custom tests if needed
+# can apply tests at the model / column level within the DAG, though not to CTEs
+
+models:
+  - name: work_table_yy # a failure in this test will cause the DAG to stop processing later steps into the target_table
+    tests:
+      - dbt_utils.recency:
+          datepart: minute # change this and the interval to get examples of pass / fail
+          field: _updated_at
+          interval: 10
+
+  - name: target_table
+    tests:
+      - dbt_utils.recency:
+          datepart: minute # change this and the interval to get examples of pass / fail
+          field: CHANGE_TS
+          interval: 10
