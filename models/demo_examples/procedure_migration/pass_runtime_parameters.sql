@@ -4,4 +4,5 @@
   Variables can also be set in the dbt_project.yml file
 #}
 
-select '{{var('my_custom_date_variable', '2024-01-01')}}' as custom_run_date, '{{run_started_at}}' as default_run_date
+select '{{var('my_custom_date_variable', '2024-01-01')}}' as custom_run_date,
+       '{{run_started_at}}' as default_run_date
