@@ -1,8 +1,25 @@
 models:
-  - name: test_constraints_application
+  - name: test_constraints_fk_table
+    # config:
+    #   contract:
+    #     enforced: True
     columns:
       - name: id
-        tests:
-          - custom_unique_check:
-              apply_as_constraint: True
+        data_type: int
+        # constraints:
+        #   - type: unique
+      - name: col1
+        data_type: text
+  - name: test_constraints_application
+    # config:
+    #   contract:
+    #     enforced: True
+    columns:
+      - name: id
+        data_type: int
+        # constraints:
+        #   - type: foreign_key
+        #     expression: dbt_mwinkler.test_constraints_fk_table (id)
+      - name: col1
+        data_type: text
                 
