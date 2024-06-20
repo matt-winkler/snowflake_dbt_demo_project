@@ -77,9 +77,9 @@ source_3_update as (
 
 final as (
     {% if not is_incremental() %}
-      select 1 as source_id, 100 as order_id, 2154121 as base_prod_id union all
-      select 1 as source_id, 101 as order_id, 2910872 as base_prod_id union all 
-      select 2 as source_id, 1000 as order_id, 6215211 as base_prod_id
+      select 1 as source_id, 100 as order_id, 2154121 as base_prod_id, CURRENT_TIMESTAMP as change_ts union all
+      select 1 as source_id, 101 as order_id, 2910872 as base_prod_id, CURRENT_TIMESTAMP as change_ts union all 
+      select 2 as source_id, 1000 as order_id, 6215211 as base_prod_id, CURRENT_TIMESTAMP as change_ts
     {% else %}
       select s1.source_id,
              s1.order_id,
