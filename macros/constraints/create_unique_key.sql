@@ -1,10 +1,10 @@
-{% macro create_unique_key() %}
+{% macro create_unique_key(table_relation, column_names) %}
   {{return(adapter.dispatch('create_unique_key')(table_relation, column_names))}}
 {% endmacro %}
 
 {%- macro snowflake__create_unique_key(table_relation, column_names, quote_columns=false, constraint_name=none, lookup_cache=none) -%}
-{%- set constraint_name = (constraint_name or table_relation ~ "_" ~ column_names|join('_') ~ "_UK") | upper -%}
-{%- set columns_csv = dbt_constraints.get_quoted_column_csv(column_names, quote_columns) -%}
+{%- set constraint_name = (constraint_name or table_relation.split('.')[2] ~ "_" ~ column_names|join('_') ~ "_UK") | upper -%}
+{%- set columns_csv = get_quoted_column_csv(column_names, quote_columns) -%}
 
 {#- Check that the table does not already have this PK/UK -#}
 {%- if not unique_constraint_exists(table_relation, column_names) -%}

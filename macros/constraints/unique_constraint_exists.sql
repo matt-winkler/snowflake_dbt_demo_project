@@ -1,5 +1,5 @@
-{% macro unique_constraint_exists() %}
-  {{return(adapter.dispatch('unique_constraint_exists'))}}
+{% macro unique_constraint_exists(table_relation, column_names) %}
+  {{return(adapter.dispatch('unique_constraint_exists')(table_relation, column_names))}}
 {% endmacro %}
 
 {%- macro snowflake__unique_constraint_exists(table_relation, column_names) -%}
