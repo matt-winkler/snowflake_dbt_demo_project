@@ -16,7 +16,7 @@
     )
 }}
 
-{# this could be a runtime parameter, the result of a query, etc. #}
+{# this could be a runtime parameter in a var(), the result of a query, etc. #}
 {% set ln_in_batch_sk = 4128903721 %} 
 
 with source_1_update as (
