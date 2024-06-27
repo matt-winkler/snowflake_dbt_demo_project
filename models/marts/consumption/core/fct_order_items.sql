@@ -4,13 +4,7 @@
         tags = ['finance'],
         grants = {
             '+select': ['reporter']
-        },
-        post_hook=create_unique_key(
-            table_relation = this,
-            column_name = 'order_item_key',
-            constraint_name = 'order_item_key_unique',
-            rely = false
-        )
+        }
     )
 }}
 

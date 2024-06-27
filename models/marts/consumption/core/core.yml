@@ -169,6 +169,9 @@ models:
         enforced: false
     columns:
       - name: order_item_key
+        meta:
+          constraints:
+            - unique
         data_type: varchar
         description: ""
         tests:
