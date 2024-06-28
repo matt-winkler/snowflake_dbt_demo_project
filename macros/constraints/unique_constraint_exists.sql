@@ -23,7 +23,7 @@ SHOW PRIMARY KEYS IN TABLE {{ table_relation }}
 {%- set constraint_list = run_query(lookup_query) -%}
 {%- if constraint_list.columns["column_name"].values() | count > 0 -%}
         {%- for constraint in constraint_list.group_by("constraint_name") -%}
-            {%- if dbt_constraints.column_list_matches(constraint.columns["column_name"].values(), column_names ) -%}
+            {%- if column_list_matches(constraint.columns["column_name"].values(), column_names ) -%}
                 {%- do log("Found PK key: " ~ table_relation ~ " " ~ column_names, info=false) -%}
                 {{ return(true) }}
             {%- endif -%}
