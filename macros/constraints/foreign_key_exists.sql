@@ -10,7 +10,7 @@ SHOW IMPORTED KEYS IN TABLE {{ table_relation }}
 {%- set constraint_list = run_query(lookup_query) -%}
 {%- if constraint_list.columns["fk_column_name"].values() | count > 0 -%}
         {%- for constraint in constraint_list.group_by("fk_name") -%}
-            {%- if dbt_constraints.column_list_matches(constraint.columns["fk_column_name"].values(), column_names ) -%}
+            {%- if column_list_matches(constraint.columns["fk_column_name"].values(), column_names ) -%}
                 {%- do log("Found FK key: " ~ table_relation ~ " " ~ column_names, info=false) -%}
                 {{ return(true) }}
             {%- endif -%}
