@@ -189,6 +189,12 @@ models:
       - name: customer_key
         data_type: number
         description: ""
+        meta:
+          constraints:
+            - not_null
+            - foreign_key:
+                to: dim_customers
+                field: customer_key
 
       - name: part_key
         data_type: number

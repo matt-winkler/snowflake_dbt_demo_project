@@ -28,7 +28,7 @@ on-run-start:
   - "{{ grant_usage_rights(database_schemas, 'transformer') }}"
 
 on-run-end:
-  - "{{create_constraints(results)}}"
+  - "{{create_constraints(results, graph)}}"
   
 
 vars:
