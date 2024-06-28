@@ -1,6 +1,7 @@
 {%- macro create_constraints(results, graph) -%}
-  {%- set model_nodes = graph['nodes'].values() | selectattr("resource_type", "equalto", "model") -%}
-  {%- for res in results -%}
+  {% if execute %}
+    {%- set model_nodes = graph['nodes'].values() | selectattr("resource_type", "equalto", "model") -%}
+    {%- for res in results -%}
     {%- if res.node.config.materialized in ['table', 'incremental', 'snapshot', 'seed'] -%}
       {%- set table_identifier = res.node.database ~ '.' ~ res.node.schema ~ '.' ~ res.node.alias -%}
       {%- do log('on node: ' ~ table_identifier, info=true) -%}
@@ -21,7 +22,8 @@
             {%- endfor -%}
           {%- endfor %}
     {%- endif -%}
-  {%- endfor -%}
+    {%- endfor -%}
+  {%- endif -%}
 {%- endmacro -%}
 
 {%- macro create_constraint_from_config(model_nodes, constraint, table_identifier, column_names) -%}

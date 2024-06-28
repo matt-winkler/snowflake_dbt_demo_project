@@ -85,6 +85,9 @@ models:
       - name: customer_key
         data_type: int
         description: Primary key on the customers table
+        meta:
+          constraints:
+            - unique
         tests:
           - unique
           - not_null
@@ -171,7 +174,7 @@ models:
       - name: order_item_key
         meta:
           constraints:
-            - unique
+            - primary_key
         data_type: varchar
         description: ""
         tests:
@@ -181,6 +184,9 @@ models:
       - name: order_key
         data_type: number
         description: ""
+        meta:
+          constraints:
+            - not_null
 
       - name: order_date
         data_type: date
