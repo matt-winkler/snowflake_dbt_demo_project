@@ -1,4 +1,5 @@
 {%- macro create_constraints(results, graph) -%}
+  {%- set model_nodes = graph['nodes'].values() | selectattr("resource_type", "equalto", "model") -%}
   {%- for res in results -%}
     {%- if res.node.config.materialized in ['table', 'incremental', 'snapshot', 'seed'] -%}
       {%- set table_identifier = res.node.database ~ '.' ~ res.node.schema ~ '.' ~ res.node.alias -%}
@@ -11,7 +12,7 @@
               {%- do log('found constraint: ' ~ const ~ 'on column: ' ~ col, info=true) -%}
               
               {%- do create_constraint_from_config(
-                graph['nodes'], 
+                model_nodes, 
                 constraint=const, 
                 table_identifier=table_identifier, 
                 column_names=[col])
@@ -23,15 +24,15 @@
   {%- endfor -%}
 {%- endmacro -%}
 
-{%- macro create_constraint_from_config(nodes, constraint, table_identifier, column_names) -%}
+{%- macro create_constraint_from_config(model_nodes, constraint, table_identifier, column_names) -%}
   {%- if constraint == 'unique' -%}
     {%- do create_unique_key(table_identifier, column_names=column_names) -%}
   
   {%- elif constraint == 'not_null' -%}  
-    {%- do log('pass not_null', info=true) -%}
+    {%- do create_not_null(table_identifier, column_names=column_names) -%}
   
   {%- elif constraint == 'primary' -%}  
-    {%- do log('pass primary', info=true) -%}
+    {%- do create_primary_key(table_identifier, column_names=column_names) -%}
   
   {%- elif constraint.keys()|list == ['foreign_key'] -%}
     {%- set pk_relation = constraint['foreign_key']['to'] -%}
@@ -39,7 +40,7 @@
 
     {# TODO: error handling if an invalid node reference to the foreign key table is specified #}
 
-    {%- for node in nodes.values() | selectattr("resource_type", "equalto", "model") -%}
+    {%- for node in model_nodes -%}
       
       {%- if node.name == pk_relation -%}
         {%- set pk_relation = [node.database, node.schema, node.alias]|join('.') -%}
