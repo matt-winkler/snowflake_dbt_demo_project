@@ -15,6 +15,7 @@
         {%- for column in column_array -%}
             {%- set column_list = column_list.append( adapter.quote(column) ) -%}
         {%- endfor -%}
+    
     {%- else -%}
         {{ exceptions.raise_compiler_error(
             "`quote_columns` argument must be one of [True, False] Got: '" ~ quote ~"'.'"

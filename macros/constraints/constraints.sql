@@ -27,13 +27,19 @@
 {%- endmacro -%}
 
 {%- macro create_constraint_from_config(model_nodes, constraint, table_identifier, column_names) -%}
+  {%- if constraint not in ['unique', 'not_null', 'primary_key', 'foreign_key'] -%}
+    {%- do exceptions.raise_compiler_error(
+         "`constraint` argument must be one of ['unique', 'not_null', 'primary_key', 'foreign_key'] Got: '" ~ constraint ~"'.'"
+    ) -%}
+  {%- endif -%}
+
   {%- if constraint == 'unique' -%}
     {%- do create_unique_key(table_identifier, column_names=column_names) -%}
   
   {%- elif constraint == 'not_null' -%}  
     {%- do create_not_null(table_identifier, column_names=column_names) -%}
   
-  {%- elif constraint == 'primary' -%}  
+  {%- elif constraint == 'primary_key' -%}  
     {%- do create_primary_key(table_identifier, column_names=column_names) -%}
   
   {%- elif constraint.keys()|list == ['foreign_key'] -%}
