@@ -27,7 +27,7 @@
 {%- endmacro -%}
 
 {%- macro create_constraint_from_config(model_nodes, constraint, table_identifier, column_names) -%}
-  {%- if constraint not in ['unique', 'not_null', 'primary_key', 'foreign_key'] -%}
+  {%- if constraint not in ['unique', 'not_null', 'primary_key'] and constraint.keys()|list != ['foreign_key'] -%}
     {%- do exceptions.raise_compiler_error(
          "`constraint` argument must be one of ['unique', 'not_null', 'primary_key', 'foreign_key'] Got: '" ~ constraint ~"'.'"
     ) -%}
@@ -44,7 +44,7 @@
   
   {%- elif constraint.keys()|list == ['foreign_key'] -%}
     {%- set pk_relation = constraint['foreign_key']['to'] -%}
-    {%- set pk_column = constraint['foreign_key', 'field'] -%}
+    {%- set pk_column = constraint['foreign_key']['field'] -%}
 
     {# TODO: error handling if an invalid node reference to the foreign key table is specified #}
 
