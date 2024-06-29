@@ -69,8 +69,8 @@ models:
         enforced: true
       meta:
         constraints:
-          - type: unique
-            columns: ['order_key']
+          - type: primary_key
+            columns: ['order_key', 'order_date']
     latest_version: 0
     versions:
       - v: 0

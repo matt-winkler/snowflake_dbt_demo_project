@@ -75,8 +75,6 @@
     {%- set pk_relation = constraint['foreign_key']['to'] -%}
     {%- set pk_column = constraint['foreign_key']['field'] -%}
 
-    {# TODO: error handling if an invalid node reference to the foreign key table is specified #}
-
     {%- for node in model_nodes -%}
       
       {%- if node.name == pk_relation -%}
