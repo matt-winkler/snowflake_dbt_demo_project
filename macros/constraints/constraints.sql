@@ -39,7 +39,7 @@
         
         {# apply extracted constraints #}
         {%- for const in constraints -%}
-          {%- do log('applying constraint: ' ~ const ~ 'on column: ' ~ col, info=true) -%}
+          {%- do log('applying constraint: ' ~ const, info=true) -%}
           {%- do create_constraint_from_config(
             model_nodes, 
             constraint=const['type'], 
