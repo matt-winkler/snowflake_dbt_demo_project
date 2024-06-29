@@ -67,6 +67,10 @@ models:
     config:
       contract:
         enforced: true
+      meta:
+        constraints:
+          - type: unique
+            columns: ['order_key']
     latest_version: 0
     versions:
       - v: 0
