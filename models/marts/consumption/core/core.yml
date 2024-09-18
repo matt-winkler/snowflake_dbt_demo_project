@@ -67,6 +67,10 @@ models:
     config:
       contract:
         enforced: true
+      meta:
+        constraints:
+          - type: primary_key
+            columns: ['order_key', 'order_date']
     latest_version: 0
     versions:
       - v: 0
@@ -85,6 +89,9 @@ models:
       - name: customer_key
         data_type: int
         description: Primary key on the customers table
+        meta:
+          constraints:
+            - unique
         tests:
           - unique
           - not_null
@@ -169,6 +176,9 @@ models:
         enforced: false
     columns:
       - name: order_item_key
+        meta:
+          constraints:
+            - primary_key
         data_type: varchar
         description: ""
         tests:
@@ -178,6 +188,9 @@ models:
       - name: order_key
         data_type: number
         description: ""
+        meta:
+          constraints:
+            - not_null
 
       - name: order_date
         data_type: date
@@ -186,6 +199,12 @@ models:
       - name: customer_key
         data_type: number
         description: ""
+        meta:
+          constraints:
+            - not_null
+            - foreign_key:
+                to: dim_customers
+                field: customer_key
 
       - name: part_key
         data_type: number

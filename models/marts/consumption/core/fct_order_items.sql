@@ -4,14 +4,13 @@
         tags = ['finance'],
         grants = {
             '+select': ['reporter']
-        },
+        }
     )
 }}
 
 with order_item as (
 
     select * from {{ ref('order_items') }}
-    
 ),
 part_supplier as (
     
@@ -38,7 +37,7 @@ final as (
         part_supplier.cost as supplier_cost,
         {# ps.retail_price, #}
         part_supplier.retail_price,
-        'bbb' as test,
+        'bbb' as test_column,
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
