@@ -1,0 +1,22 @@
+saved_queries:
+  - name: orders_export_query
+    description: A saved query to export results of the orders semantic model to the warehouse
+    label: Orders Export Query
+    config:
+      cache:
+        enabled: true  # Or false if you want it disabled by default
+    query_params:
+      metrics:
+        - order_total
+      group_by:
+        - "Dimension('metric_time__year')"
+        #- "Dimension('customer__region')"
+      where:
+        - "{{ Dimension('user__ds', 'DAY') }} <= now()"
+        - "{{ Dimension('user__ds', 'DAY') }} >= '2023-01-01'"
+    exports:
+      - name: my_orders_export
+        config:
+          alias: my_orders_export_alias
+          export_as: table
+          schema: my_export_schema_name
