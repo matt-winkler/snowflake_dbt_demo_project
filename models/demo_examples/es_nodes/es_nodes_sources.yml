@@ -1,0 +1,7 @@
+sources:
+  - name: csccore
+    database: CSCCORE_DB
+    schema: CSCCORE_SOURCE_BR
+    tables:
+      - name: es_nodes_stg
+      - name: es_api_control

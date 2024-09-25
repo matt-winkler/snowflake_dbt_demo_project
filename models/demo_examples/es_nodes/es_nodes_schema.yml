@@ -1,0 +1,10 @@
+models:
+  - name: es_nodes_temp
+  - name: es_nodes
+  - name: es_nodes_history
+  - name: es_nodes_error
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: is null
+          column_name: batch_id
+        
