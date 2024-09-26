@@ -4,12 +4,6 @@
     )
 }}
 
-{% if var('mode') == 'demo_no_records_in_es_nodes_error' %}
-   select null as batch_id
-{% elif var('mode') == 'demo_records_in_es_nodes_error' %}
-   select 1 as batch_id
-{% else %}
-
 select BATCH_ID,
        URL,
        RISK_EXPOSURE_INDEX,
@@ -68,5 +62,3 @@ select BATCH_ID,
 
 from   {{ref('es_nodes_temp')}}
 where  error is null
-
-{% endif %}
