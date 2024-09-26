@@ -43,7 +43,7 @@ final as (
         order_item.tax_rate,
         part_supplier.nation_key,
         1 as order_item_count,
-        order_item.quantity,
+        case when order_date = '1992-01-01' then 100 else order_item.quantity end as quantity, -- added this case statement
         order_item.gross_item_sales_amount as gross_item_revenue, -- renamed this column
         order_item.discounted_item_sales_amount,
         order_item.item_discount_amount,
