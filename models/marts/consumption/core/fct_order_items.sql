@@ -36,9 +36,7 @@ final as (
         order_item.receipt_date,
         order_item.ship_mode,
         part_supplier.cost as supplier_cost,
-        {# ps.retail_price, #}
-        part_supplier.retail_price,
-        'bbb' as test,
+        {# part_supplier.retail_price, #} -- commented out this column
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
@@ -46,7 +44,7 @@ final as (
         part_supplier.nation_key,
         1 as order_item_count,
         order_item.quantity,
-        order_item.gross_item_sales_amount,
+        order_item.gross_item_sales_amount as gross_item_revenue, -- renamed this column
         order_item.discounted_item_sales_amount,
         order_item.item_discount_amount,
         order_item.item_tax_amount,
@@ -57,6 +55,7 @@ final as (
         inner join part_supplier
             on order_item.part_key = part_supplier.part_key and
                 order_item.supplier_key = part_supplier.supplier_key
+    where order_date <= '1992-01-17' -- added a date filter
 )
 select 
     *
