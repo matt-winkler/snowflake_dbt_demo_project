@@ -37,7 +37,6 @@ final as (
         order_item.ship_mode,
         part_supplier.cost as supplier_cost,
         {# part_supplier.retail_price, #} -- commented out this column
-        
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
