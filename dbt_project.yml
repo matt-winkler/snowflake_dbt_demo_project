@@ -25,13 +25,8 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_packages"
 
 on-run-start:
-  - "alter warehouse transforming set warehouse_size=small;"
   - "{{ grant_usage_rights(database_schemas, 'transformer') }}"
-
-on-run-end:
-  - "alter warehouse transforming set warehouse_size=xsmall;"
   
-
 vars:
   start_date: '2023-01-01'
   'dbt_date:time_zone': 'America/Denver'

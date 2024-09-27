@@ -248,6 +248,7 @@ models:
         description: ""
         tests:
          - not_null
+         - unique
 
       - name: order_item_count
         data_type: number

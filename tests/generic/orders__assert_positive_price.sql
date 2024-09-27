@@ -16,7 +16,7 @@ validation_errors as (
 
     from validation
     -- if this is true, then the price field is negative which is bad!
-    where column_name < 0
+    where column_name > 0
 
 )
 
