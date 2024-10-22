@@ -6,6 +6,7 @@
     )
 }}
 
+
 with upstream_data as (
 
 -- run these three first
@@ -27,7 +28,7 @@ select	'2024-09-19'	as dt,	2	as lead_id,	'2024-09-16'	as created_dt,	'valid'	as 
 inserts as (
     select 
           u.lead_id,
-          u.dt as created_dt,
+          u.created_dt,
           u.status,
           u.source,
           u.offer,

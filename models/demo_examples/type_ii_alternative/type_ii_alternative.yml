@@ -1,0 +1,4 @@
+models:
+  - name: type_ii_alternative
+    meta:
+      foo: bar

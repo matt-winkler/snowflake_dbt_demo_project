@@ -34,14 +34,20 @@ vars:
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
 
+
+
+
 models:
   snowflake_hub:
-    
+    demo_examples:
+      type_ii_alternative:
+        +post-hook: "{{validate_meta_tagging(model)}}"
+
     raw:
       +materialized: view
 
     marts:
-        
+          
       intermediate:
         +materialized: view
       consumption:
