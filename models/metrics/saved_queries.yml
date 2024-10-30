@@ -7,7 +7,7 @@ saved_queries:
         enabled: true  # Or false if you want it disabled by default
     query_params:
       metrics:
-        - order_count
+        - order_total
       where:
         - "{{ Dimension('order_metrics__order_date') }} <= now()"
         - "{{ Dimension('order_metrics__order_date') }} >= '2023-01-01'"
