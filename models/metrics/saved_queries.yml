@@ -9,8 +9,8 @@ saved_queries:
       metrics:
         - order_total
       where:
-        - "{{ Dimension('order_metrics__order_date') }} <= now()"
-        - "{{ Dimension('order_metrics__order_date') }} >= '2023-01-01'"
+        - "{{ Dimension('metric_time__day') }} <= now()"
+        - "{{ Dimension('metric_time__day') }} >= '2023-01-01'"
     exports:
       - name: orders_export
         config:
