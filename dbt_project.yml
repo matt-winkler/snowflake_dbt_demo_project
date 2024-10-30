@@ -61,3 +61,8 @@ models:
   #dbt_project_evaluator:
   #  +database: dbt_project_evaluator
   #  +schema: snowflake_hub
+
+saved-queries:
+  orders_export:
+    +cache:
+      enabled: true
