@@ -8,8 +8,6 @@ saved_queries:
     query_params:
       metrics:
         - order_count
-      group_by:
-        - "TimeDimension('order_item_key__order_date', 'day')"
       where:
         - "{{ Dimension('order_metrics__order_date') }} <= now()"
         - "{{ Dimension('order_metrics__order_date') }} >= '2023-01-01'"
