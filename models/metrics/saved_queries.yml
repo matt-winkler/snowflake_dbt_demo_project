@@ -1,0 +1,21 @@
+saved_queries:
+  - name: orders_export
+    description: "a test of date trunc"
+    label: Export of orders data
+    config:
+      cache:
+        enabled: true  # Or false if you want it disabled by default
+    query_params:
+      metrics:
+        - order_count
+      group_by:
+        - "Dimension('order_metrics__order_date')"
+      where:
+        - "{{ Dimension('order_metrics__order_date') }} <= now()"
+        - "{{ Dimension('order_metrics__order_date') }} >= '2023-01-01'"
+    exports:
+      - name: orders_export
+        config:
+          alias: orders_export
+          export_as: view
+          schema: dbt_mwinkler_sl_exports

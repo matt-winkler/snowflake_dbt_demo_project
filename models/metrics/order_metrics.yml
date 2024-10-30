@@ -15,6 +15,7 @@ semantic_models:
     dimensions:   
      - name: order_date
        type: time
+       is_partition: True
        type_params:
          time_granularity: day
     measures:   

@@ -24,11 +24,8 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
-on-run-start:
-  #- "alter warehouse transforming set warehouse_size=small;"
 
 on-run-end:
-  #- "alter warehouse transforming set warehouse_size=xsmall;"
   - "{{ grant_usage_rights(database_schemas, 'transformer') }}"
   
 
@@ -63,3 +60,7 @@ models:
   #dbt_project_evaluator:
   #  +database: dbt_project_evaluator
   #  +schema: snowflake_hub
+saved-queries:
+  orders_export:
+    +cache:
+      enabled: true
