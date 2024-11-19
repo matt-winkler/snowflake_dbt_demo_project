@@ -4,7 +4,7 @@
     )
 }}
 
-{% set batch_id = 'XXXX111' %} -- query this from the api source in real project
+{% set batch_id = 'XXXX111' %} 
 
 SELECT
  '{{batch_id}}' AS BATCH_ID -- could also get batch ID from a control table, UUID etc.
@@ -137,4 +137,4 @@ SELECT
  ELSE NULL
                         END AS ERROR
 
- FROM {{source('csccore', 'es_nodes_stg')}}
+ FROM {{source('upstream_data', 'node_stg')}}

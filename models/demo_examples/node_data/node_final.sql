@@ -60,5 +60,5 @@ select BATCH_ID,
        ERROR,
        LOAD_DATE
 
-from   {{ref('es_nodes_temp')}}
+from   {{ref('node_temp')}}
 where  error is null

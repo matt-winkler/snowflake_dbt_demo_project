@@ -1,0 +1,22 @@
+models:
+  - name: node_temp
+    description: Main work table for data processing
+    meta:
+      owner: matt.winkler@dbtlabs.com
+  - name: node_final
+    description: Final table with nodes data unaffected by errors due to missing fields
+    meta:
+      owner: matt.winkler@dbtlabs.com
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: is null
+          column_name: error
+  - name: node_history
+    description: Historical log table of each day's processing
+    meta:
+      owner: matt.winkler@dbtlabs.com
+  - name: node_error
+    description: Error records for each run
+    meta:
+      owner: matt.winkler@dbtlabs.com
+        

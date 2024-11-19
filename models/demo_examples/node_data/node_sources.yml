@@ -1,0 +1,7 @@
+sources:
+  - name: upstream_data
+    database: MY_SOURCE_DB
+    schema: MY_SOURCE_SCHEMA
+    tables:
+      - name: node_stg
+      - name: control_table

@@ -5,4 +5,4 @@
     )
 }}
 
-select * from {{ref('es_nodes_temp')}}
+select * from {{ref('node_temp')}}

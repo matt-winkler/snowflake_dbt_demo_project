@@ -1,32 +1,29 @@
 --# ===================================================================================================
---#                     CISCO SUPPLYCHAIN SNOWFLAKE DATA FOUNDATION
+--#                                  SNOWFLAKE DATA 
 --# ===================================================================================================
---# File                        : POPULATE_TAB_ES_NODES.sql
---# Entity Name                 : ES_NODES
+--# File                        : RUN_NODES.sql
+--# Entity Name                 : DATA_NODES
 --# Entity Type                 : Table
 --# Type of Data Load           : FULL LOAD
 --# Data Load Frequency         : MANUAL
 --# Job Time                    : 00:00:00 PT
---# Snowflake DB/Schema         : CSCCORE_DB.CSCCORE_SOURCE_BR
---# Source Database             : CSCCORE_DB
---# Source Schema               : CSCCORE_SOURCE_BR
---# Source Table                : ES_NODES_STG
---# Source SME                  : vinog
---# Entity SME (SF)             : samikar
---# View Conversion (T/F)       : T
---# Business DB/Schema          : CSCCORE_DB.CSCCORE_SOURCE_BV
---# Business View               : ES_API_NODES
---# Description                 : EVERSTREAM API AFFECTED_NODES
---# User Story #                : SCP-16260
+--# Snowflake DB/Schema         : MY_SOURCE_DB.MY_SOURCE_SCHEMA
+--# Source Database             : MY_SOURCE_DB
+--# Source Schema               : MY_SOURCE_SCHEMA
+--# Source Table                : NODE_STG
+--# Source SME                  : Matt
+--# Entity SME (SF)             : Winkler
+--# Description                 : Nodes affected by internal API updates
+--# User Story #                : dbt-1234
 --#
 --# ===================================================================================================
 --#                  *** IMPORTANT NOTE *** :
 --#       CHANGE HISTORY NEEDS TO BE MAINTAINED STRICTLY BY DEVELOPERS
 --#         (Contact Entity Owner for any changes in definition)
 --# ---------------------------------------------------------------------------------------------------
---# No |  Date     |     Version  |  Author(Cisco ID)  |  Comments(Change Log)
+--# No |  Date     |     Version  |  Author  |  Comments(Change Log)
 --# ---------------------------------------------------------------------------------------------------
---# 1. |  01-JUNE-2022  | 1.0    |   rakgupt3      |       Initial Version
+--# 1. |  01-JUNE-2024  | 1.0    |   Matt Winkler      |       Initial Version
 --# ==================================================================================================== 
 
 
