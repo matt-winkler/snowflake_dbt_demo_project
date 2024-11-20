@@ -1,0 +1,30 @@
+semantic_models:
+  - model: ref('fct_orders')
+    name: revenue
+    defaults:
+      agg_time_dimension: order_date
+    description: |
+      Order fact table. This table is at the order grain with one row per order.
+      #Entities. These usually correspond to keys in the table.
+    entities:
+      - name: order_key
+        type: primary
+      - name: nation
+        type: foreign
+        expr: nation_key
+      - name: customer
+        type: foreign
+        expr: customer_key
+    measures: 
+      - name: order_total
+        description: The total revenue for each order.
+        expr: gross_item_sales_amount
+        agg: sum
+      - name: order_count
+        expr: 1
+        agg: sum
+    dimensions:
+      - name: order_date
+        type: time
+        type_params:
+          time_granularity: day 

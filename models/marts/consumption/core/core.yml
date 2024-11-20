@@ -256,6 +256,13 @@ models:
       - name: quantity
         data_type: number
         description: ""
+        tests:
+          - dbt_expectations.expect_column_stdev_to_be_between:
+              min_value: 0 # (Optional)
+              max_value: 20 # (Optional)
+              #group_by: [group_id, other_group_id, ...] # (Optional)
+              #row_condition: "id is not null" # (Optional)
+              strictly: false # (Optional. Default is 'false'. 
 
       - name: gross_item_sales_amount
         data_type: number
