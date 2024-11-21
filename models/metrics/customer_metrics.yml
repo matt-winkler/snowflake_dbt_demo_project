@@ -1,7 +1,7 @@
 semantic_models:
   - name: customers
     defaults:
-      agg_time_dimension: most_recent_order_date
+      agg_time_dimension: first_order_date
     description: |
       semantic model for dim_customers
     model: ref('dim_customers')
@@ -11,7 +11,7 @@ semantic_models:
         type: primary
       
     dimensions:
-      - name: most_recent_order_date
+      - name: first_order_date
         type: time
         type_params:
           time_granularity: day
