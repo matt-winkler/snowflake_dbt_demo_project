@@ -1,8 +1,7 @@
 {{
     config(
         materialized='table',
-        database='MATT_W_TEST_DB',
-        schema='MATT_W_TEST_SCHEMA'
+        database='MATT_W_TEST_DB'
     )
 }}
 
