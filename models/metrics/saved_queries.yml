@@ -7,12 +7,10 @@ saved_queries:
         enabled: true  # Or false if you want it disabled by default
     query_params:
       metrics:
-        - order_count
-      group_by:
-        - "Dimension('order_metrics__order_date')"
+        - order_total
       where:
-        - "{{ Dimension('order_metrics__order_date') }} <= now()"
-        - "{{ Dimension('order_metrics__order_date') }} >= '2023-01-01'"
+        - "{{ TimeDimension('metric_time', 'day') }} <= now()"
+        - "{{ TimeDimension('metric_time', 'day') }} >= '2023-01-01'"
     exports:
       - name: orders_export
         config:

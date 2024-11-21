@@ -24,11 +24,6 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
-
-on-run-end:
-  - "{{ grant_usage_rights(database_schemas, 'transformer') }}"
-  
-
 vars:
   start_date: '2023-01-01'
   'dbt_date:time_zone': 'America/Denver'
