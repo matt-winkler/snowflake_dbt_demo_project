@@ -21,14 +21,14 @@ region as (
 
 ),
 
-/*
-most_recent_order_date as (
 
-    select customer_key, min(order_date) as most_recent_order_date
+first_order_date as (
+
+    select customer_key, min(order_date) as first_order_date
     from   {{ref('fct_order_items')}}
     group by 1
 ),
-*/
+
 
 final as (
     select 
@@ -42,15 +42,15 @@ final as (
         customer.phone_number,
         customer.account_balance,
         customer.market_segment
-        -- ,most_recent_order_date.most_recent_order_date
+        ,first_order_date.first_order_date
     from
         customer
         inner join nation
             on customer.nation_key = nation.nation_key
         inner join region
             on nation.region_key = region.region_key
-        --inner join most_recent_order_date
-        --    on customer.customer_key = most_recent_order_date.customer_key
+        inner join first_order_date
+           on customer.customer_key = first_order_date.customer_key
 )
 select 
     *

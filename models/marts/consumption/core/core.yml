@@ -113,6 +113,9 @@ models:
       - name: market_segment
         data_type: text
         description: market segment of the customer
+      - name: first_order_date
+        data_type: date
+        description: first order date for the customer
   
   # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
