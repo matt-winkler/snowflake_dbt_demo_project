@@ -1,42 +1,33 @@
+{# 
+Usage notes:
+ - several dbt cloud environment variables are only populated in deployment environments
+ - For example, there is no notion of a job Id for development runs of dbt
+ - in this case and others, we populate a default value in the event the environment variable
+ - isn't populated, e.g. env_var('DBT_CLOUD_JOB_ID', 'None')
+ - read more on dbt cloud environment variables here: https://docs.getdbt.com/docs/build/environment-variables
+#}
+
 {% macro set_query_tag() -%}
-
-  {# -- These are built in dbt Cloud environment variables you can leverage to better understand your runs usage data #}
-  {% set dbt_job_id = env_var('DBT_CLOUD_JOB_ID', 'not set') %}
-  {% set dbt_run_id = env_var('DBT_CLOUD_RUN_ID', 'not set') %}
-  {% set dbt_run_reason = env_var('DBT_CLOUD_RUN_REASON', 'development_and_testing') %}
-
-  {# -- These are built in to dbt Core #}
-  {% set dbt_project_name = project_name %}
-  {% set dbt_user_name = target.user %}
-  {% set dbt_model_name = model.name %}
-  {% set dbt_materialization_type = model.config.materialized %}
-  {% set dbt_incremental_full_refresh = 'false' %}
-  {% set dbt_environment_name = target.name %}
-
-  {% if dbt_materialization_type == 'incremental' and should_full_refresh() %}
-     {% set dbt_incremental_full_refresh = 'true' %}
-  {% endif %}
-
-  {% if dbt_model_name %}
-    
-    {% set new_query_tag = '{"dbt_environment_name": "%s", "dbt_job_id": "%s", "dbt_run_id": "%s", "dbt_run_reason": "%s", "dbt_project_name": "%s", "dbt_user_name": "%s", "dbt_model_name": "%s", "dbt_materialization_type": "%s", "dbt_incremental_full_refresh": "%s"}'
-      |format(dbt_environment_name,
-              dbt_job_id,
-              dbt_run_id, 
-              dbt_run_reason,
-              dbt_project_name,
-              dbt_user_name,
-              dbt_model_name,
-              dbt_materialization_type,
-              dbt_incremental_full_refresh) %}
-
-    {% set original_query_tag = get_current_query_tag() %}
-    {{ log("Setting query_tag to '" ~ new_query_tag ~ "'. Will reset to '" ~ original_query_tag ~ "' after materialization.") }}
-    {% do run_query("alter session set query_tag = '{}'".format(new_query_tag)) %}
-    {{ return(original_query_tag)}}
-  
-  {% endif %}
-  
-  {{ return(none)}}
-
+    {% do return(dbt_snowflake_query_tags.set_query_tag(
+        extra={
+            'model_name': model.name,
+            'database_name': target.database,
+            'schema_name': target.schema,
+            'warehouse_name': target.warehouse,
+            'repo': var('repo'),
+            'project_name': project_name,
+            'dbt_version': dbt_version,
+            'dbt_cloud_job_id': env_var('DBT_CLOUD_JOB_ID', 'None'),
+            'dbt_run_id': env_var('DBT_CLOUD_RUN_ID', 'None'),
+            'dbt_environment_type': env_var('DBT_CLOUD_ENVIRONMENT_TYPE'),
+            'dbt_invocation_id': invocation_id,
+            'dbt_cloud_run_reason_category': env_var('DBT_CLOUD_RUN_REASON_CATEGORY', 'None'),
+            'dbt_cloud_run_reason': env_var('DBT_CLOUD_RUN_REASON', 'None'),
+            'dbt_cloud_environment_id': env_var('DBT_CLOUD_ENVIRONMENT_ID', 'None'),
+            'dbt_cloud_account_id': env_var('DBT_CLOUD_ACCOUNT_ID', 'None')
+         }
+    )) %}
+{% endmacro %}
+{% macro unset_query_tag(original_query_tag) -%}
+    {% do return(dbt_snowflake_query_tags.unset_query_tag(original_query_tag)) %}
 {% endmacro %}

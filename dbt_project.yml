@@ -29,6 +29,7 @@ vars:
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
+  repo: snowflake_hub
 
 models:
   snowflake_hub:
