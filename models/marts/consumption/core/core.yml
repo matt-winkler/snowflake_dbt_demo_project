@@ -1,6 +1,13 @@
 version: 2
 
 models:
+  - name: dim_customers_hybrid
+    config:
+      force_ctas: true
+      column_definitions:
+        customer_key: number(38,0)
+        region: varchar
+      primary_key: customer_key
   - name: fct_orders
     description: orders fact table
     columns:
