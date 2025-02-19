@@ -1,5 +1,5 @@
 {% macro grant_usage_rights(database_schemas, role) %}
-  {% if target.name == 'ci' %}
+  {% if target.name == 'qa' %}
     {% for (database, schema) in database_schemas %}
       use database {{ database }};
       grant usage on database {{ database }} to role {{ role }};
