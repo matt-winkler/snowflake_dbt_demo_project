@@ -34,6 +34,14 @@ vars:
 
 on-run-end: 
   - "{{grant_usage_rights(database_schemas, 'transformer')}}"
+  - "{{my_store_test_results(results)}}"
+
+dispatch:
+  - macro_namespace: dbt
+    search_order:
+      - snowflake_hub
+      - dbt_snowflake_query_tags
+      - dbt
 
 models:
   snowflake_hub:
