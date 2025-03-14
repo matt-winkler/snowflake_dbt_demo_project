@@ -8,6 +8,7 @@
     )
 }}
 
+
 with order_item as (
 
     select * from {{ ref('order_items') }}
@@ -33,6 +34,7 @@ final as (
         order_item.line_number,
         order_item.ship_date,
         order_item.commit_date,
+        -- format the receipt date in yyyy-mm-dd
         order_item.receipt_date,
         order_item.ship_mode,
         part_supplier.cost as supplier_cost,
@@ -57,6 +59,7 @@ final as (
         inner join part_supplier
             on order_item.part_key = part_supplier.part_key and
                 order_item.supplier_key = part_supplier.supplier_key
+    
 )
 select 
     *
