@@ -1,6 +1,5 @@
 {{
     config(
-        enabled=true,
         severity='error',
         tags = ['finance']
     )
