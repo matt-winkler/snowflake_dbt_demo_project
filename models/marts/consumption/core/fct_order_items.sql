@@ -8,6 +8,8 @@
     )
 }}
 
+-- comment
+
 with order_item as (
 
     select * from {{ ref('order_items') }}

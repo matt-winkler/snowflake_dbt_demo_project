@@ -24,20 +24,28 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
+flags:
+  state_modified_compare_more_unrendered_values: True
+
 vars:
   start_date: '2023-01-01'
   'dbt_date:time_zone': 'America/Denver'
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
 
+tests:
+  #+enabled: "{{ true if env_var('DBT_CLOUD_ENVIRONMENT') in ['dev', 'ci'] else false }}" # applies to tests in tests/ folder
+  snowflake_hub:
+    raw:
+      tpch:
+        +enabled: true # overrides above enabled config for tests attached to models in models/raw/ folder
+
 models:
   snowflake_hub:
-    
     raw:
       +materialized: view
 
     marts:
-        
       intermediate:
         +materialized: view
       consumption:
