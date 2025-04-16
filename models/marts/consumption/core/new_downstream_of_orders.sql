@@ -1,1 +1,1 @@
-select * from {{ ref('fct_orders') }} where false
+select * from {{ ref('fct_orders') }} where false and 1=1
