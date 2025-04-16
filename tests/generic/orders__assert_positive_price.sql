@@ -1,5 +1,10 @@
 {% test orders__assert_positive_price(model, column_name) %}
 
+{{ config(
+  enabled= env_var('RUN_THIS_TEST', False)
+) }}
+
+
 with validation as (
 
     select

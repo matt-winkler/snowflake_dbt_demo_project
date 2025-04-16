@@ -30,14 +30,12 @@ vars:
   demo__backfill_incremental__start_date: '1998-07-20'
   demo__backfill_incremental__end_date: '1998-08-02'
 
+
 models:
   snowflake_hub:
-    
     raw:
       +materialized: view
-
     marts:
-        
       intermediate:
         +materialized: view
       consumption:
