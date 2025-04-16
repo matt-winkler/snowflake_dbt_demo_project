@@ -4,10 +4,6 @@ models:
   - name: fct_orders
     description: orders fact table
     columns:
-      - name: gross_item_sales_amount
-        data_type: numeric
-        tests:
-          - orders__assert_positive_price
       - name: order_key
         data_type: int
         description: primary key of the model
@@ -44,6 +40,8 @@ models:
         description: How many line items have the return flag in this order?
       - name: total_price
         data_type: numeric
+        tests:
+          - orders__assert_positive_price
         description: aggregated price for the order as a whole
       - name: gross_item_sales_amount
         data_type: numeric

@@ -1,9 +1,10 @@
 {% test orders__assert_positive_price(model, column_name) %}
 
-{{ config(
-  enabled= env_var('RUN_THIS_TEST', False)
-) }}
-
+{{
+    config(
+        enabled = env_var('DBT_RUN_THE_TESTS') == 'True'
+    )
+}}
 
 with validation as (
 
@@ -13,6 +14,7 @@ with validation as (
     from {{ model }}
 
 ),
+
 
 validation_errors as (
 
