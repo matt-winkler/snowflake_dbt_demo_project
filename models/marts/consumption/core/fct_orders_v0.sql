@@ -8,7 +8,7 @@
     )
 }}
 
--- PR Triggerr
+-- PR Trigger
 
 with orders as (
 
