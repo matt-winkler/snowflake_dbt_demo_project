@@ -1,5 +1,6 @@
 {% test orders__assert_positive_price(model, column_name) %}
 
+
 {{
     config(
         enabled = env_var('DBT_RUN_THE_TESTS') == 'True'
