@@ -9,5 +9,4 @@ selectors:
         - method: package
           value: this
         - exclude:
-            - 'package:dbt_project_evaluator'
             - 'demo_examples'
