@@ -36,8 +36,8 @@ final as (
     supplier.account_balance,
     supplier.nation_key,
 
-    part_supplier.available_quantity,
-    part_supplier.cost
+    part_supplier.available_quantity
+    --part_supplier.cost
 from
     part 
 inner join 
