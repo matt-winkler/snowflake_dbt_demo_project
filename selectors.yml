@@ -1,11 +1,4 @@
 selectors:
-  # - name: lower_env_tests
-  #   definition:
-  #     intersection:
-  #       - exclude:
-  #         - method: resource_type
-  #           value: test
-  
   - name: snowflake_hub
     description: >
         Only resources from the current project and excluding demo examples.
