@@ -39,6 +39,7 @@ vars:
 
 models:
   snowflake_hub:
+    +group: matt_w
     raw:
       +materialized: view
     marts:
