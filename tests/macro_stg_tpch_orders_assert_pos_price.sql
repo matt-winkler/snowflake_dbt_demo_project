@@ -2,7 +2,7 @@
     config(
         enabled=true,
         severity='error',
-        tags = ['finance']
+        tags = ['ci_only']
     )
 }}
 
