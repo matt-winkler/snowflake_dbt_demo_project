@@ -3,7 +3,7 @@
 
 {{
     config(
-        enabled = env_var('DBT_RUN_THE_TESTS') == 'True'
+        enabled = True
     )
 }}
 
