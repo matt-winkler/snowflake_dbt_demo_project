@@ -1,16 +1,23 @@
 packages:
-  - package: dbt-labs/codegen
+  - name: codegen
+    package: dbt-labs/codegen
     version: 0.11.0
-  - package: dbt-labs/dbt_utils
+  - name: dbt_utils
+    package: dbt-labs/dbt_utils
     version: 1.1.1
-  - package: dbt-labs/dbt_external_tables
+  - name: dbt_external_tables
+    package: dbt-labs/dbt_external_tables
     version: 0.8.4
-  - package: calogica/dbt_expectations
+  - name: dbt_expectations
+    package: calogica/dbt_expectations
     version: 0.8.5
-  - package: tnightengale/dbt_meta_testing
+  - name: dbt_meta_testing
+    package: tnightengale/dbt_meta_testing
     version: 0.3.6
-  - package: dbt-labs/dbt_project_evaluator
-    version: 0.6.2
-  - package: calogica/dbt_date
+  - name: dbt_project_evaluator
+    package: dbt-labs/dbt_project_evaluator
+    version: 1.0.0
+  - name: dbt_date
+    package: calogica/dbt_date
     version: 0.7.2
-sha1_hash: 5c7d14ea3b65c294e7ebb970e233f7957449017b
+sha1_hash: 69a64cbb177f84540885f5db1a20d78f4bc6da22
