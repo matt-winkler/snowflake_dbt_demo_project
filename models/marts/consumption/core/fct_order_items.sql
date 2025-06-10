@@ -34,7 +34,7 @@ final as (
         -- format the receipt date in yyyy-mm-dd
         order_item.receipt_date,
         order_item.ship_mode,
-        part_supplier.cost as supplier_cost,
+        {{cents_to_dollars("part_supplier.cost")}} as supplier_cost,
         {# ps.retail_price, #}
         part_supplier.retail_price,
         'ccc' as test,

@@ -39,6 +39,11 @@ vars:
 
 models:
   snowflake_hub:
+    freshness:
+      build_after: 
+        count: 12 
+        period: hours
+      updates_on: any
     +group: matt_w
     raw:
       +materialized: view
