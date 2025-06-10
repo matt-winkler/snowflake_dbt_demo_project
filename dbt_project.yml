@@ -39,6 +39,11 @@ vars:
 
 models:
   snowflake_hub:
+    freshness:
+      build_after: 
+        count: 12 
+        period: hours
+      updates_on: any
     +group: matt_w
     raw:
       +materialized: view
@@ -60,7 +65,3 @@ models:
   #dbt_project_evaluator:
   #  +database: dbt_project_evaluator
   #  +schema: snowflake_hub
-saved-queries:
-  orders_export:
-    +cache:
-      enabled: true
