@@ -27,6 +27,9 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
+on-run-end: 
+  - "{{grant_usage_rights(database_schemas, 'matt_w_dev_role')}}"
+
 vars:
   start_date: '2023-01-01'
   'dbt_date:time_zone': 'America/Denver'
@@ -36,6 +39,12 @@ vars:
 
 models:
   snowflake_hub:
+    freshness:
+      build_after: 
+        count: 12 
+        period: hours
+      updates_on: any
+    +group: matt_w
     raw:
       +materialized: view
     marts:
@@ -56,7 +65,3 @@ models:
   #dbt_project_evaluator:
   #  +database: dbt_project_evaluator
   #  +schema: snowflake_hub
-saved-queries:
-  orders_export:
-    +cache:
-      enabled: true
