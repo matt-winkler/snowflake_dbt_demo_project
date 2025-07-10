@@ -11,6 +11,9 @@ sources:
     loaded_at_field: current_timestamp() - interval '6.3 hours' #this is for demo purposes
     tables:
       - name: orders
+        tests:
+          - dbt_expectations.expect_table_columns_to_match_set:
+              column_list: ["col_a", "col_b"]
         description: main order tracking table
         
         columns:

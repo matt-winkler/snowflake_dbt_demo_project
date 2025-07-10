@@ -9,15 +9,15 @@ packages:
     package: dbt-labs/dbt_external_tables
     version: 0.8.4
   - name: dbt_expectations
-    package: calogica/dbt_expectations
-    version: 0.8.5
+    package: metaplane/dbt_expectations
+    version: 0.10.9
   - name: dbt_meta_testing
     package: tnightengale/dbt_meta_testing
     version: 0.3.6
   - name: dbt_project_evaluator
     package: dbt-labs/dbt_project_evaluator
-    version: 1.0.0
+    version: 0.6.2
   - name: dbt_date
-    package: calogica/dbt_date
-    version: 0.7.2
-sha1_hash: 69a64cbb177f84540885f5db1a20d78f4bc6da22
+    package: godatadriven/dbt_date
+    version: 0.14.2
+sha1_hash: 2e3dc80ec10d669c1383ab241d2b8b093d86d65f
