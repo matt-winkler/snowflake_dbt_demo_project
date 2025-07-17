@@ -10,4 +10,4 @@ packages:
   - package: tnightengale/dbt_meta_testing
     version: 0.3.6
   - package: dbt-labs/dbt_project_evaluator
-    version: 0.6.2
+    version: 1.0.2
