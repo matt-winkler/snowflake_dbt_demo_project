@@ -9,7 +9,7 @@ saved_queries:
       metrics:
         - order_total
       where:
-        - "{{ TimeDimension('metric_time', 'day') }} <= now()"
+        - "{{ TimeDimension('metric_time', 'day') }} <= '2025-01-01'"
         - "{{ TimeDimension('metric_time', 'day') }} >= '2023-01-01'"
     exports:
       - name: orders_export
