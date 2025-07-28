@@ -37,7 +37,7 @@ final as (
         {{cents_to_dollars("part_supplier.cost")}} as supplier_cost,
         {# ps.retail_price, #}
         part_supplier.retail_price,
-        'ccc' as test,
+        'aaa' as test,
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,

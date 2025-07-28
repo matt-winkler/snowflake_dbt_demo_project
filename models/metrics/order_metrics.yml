@@ -20,11 +20,11 @@ semantic_models:
          time_granularity: day
 
     measures:   
-      - name: order_total
+      - name: order_total_mea
         expr: gross_item_sales_amount
         description: The total amount for each order including taxes.
         agg: sum      
-      - name: order_count
+      - name: order_count_mea
         expr: order_key
         agg: count_distinct
       - name: customers_with_orders
@@ -52,13 +52,13 @@ metrics:
           - "top line revenue"
           - "KPI #1"
     type_params:
-      measure: order_total
+      measure: order_total_mea
   - name: "order_count"
     description: "number of orders"
     type: simple
     label: "order_count"
     type_params:
-      measure: order_count
+      measure: order_count_mea
   # Ratio type metric
   - name: "avg_order_value"
     label: "avg_order_value"
