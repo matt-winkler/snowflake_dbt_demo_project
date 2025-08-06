@@ -1,66 +1,77 @@
-{{
-    config(
-        materialized = 'table',
-        tags = ['finance']
-    )
-}}
-
-
-with order_item as (
-
-    select * from {{ ref('order_items') }}
-    
-),
-part_supplier as (
-    
-    select * from {{ ref('part_suppliers') }}
-
-),
-
-final as (
-
-    select 
-        order_item.order_item_key,
-        order_item.order_key,
-        order_item.order_date,
-        order_item.customer_key,
-        order_item.part_key,
-        order_item.supplier_key,
-        order_item.order_item_status_code,
-        order_item.return_flag,
-        order_item.line_number,
-        order_item.ship_date,
-        order_item.commit_date,
-        -- format the receipt date in yyyy-mm-dd
-        order_item.receipt_date,
-        order_item.ship_mode,
-        {{cents_to_dollars("part_supplier.cost")}} as supplier_cost,
-        {# ps.retail_price, #}
-        part_supplier.retail_price,
-        'ccc' as test,
-        order_item.base_price,
-        order_item.discount_percentage,
-        order_item.discounted_price,
-        order_item.tax_rate,
-        part_supplier.nation_key,
-        1 as order_item_count,
-        order_item.quantity,
-        order_item.gross_item_sales_amount,
-        order_item.discounted_item_sales_amount,
-        order_item.item_discount_amount,
-        order_item.item_tax_amount,
-        order_item.net_item_sales_amount
-
-    from
-        order_item
-        inner join part_supplier
-            on order_item.part_key = part_supplier.part_key and
-                order_item.supplier_key = part_supplier.supplier_key
-    
-)
-select 
+WITH order_items AS (
+  SELECT
     *
-from
-    final
-order by
-    order_date
+  FROM {{ ref('order_items') }}
+), part_suppliers AS (
+  SELECT
+    *
+  FROM {{ ref('part_suppliers') }}
+), projection_44ea AS (
+  SELECT
+    *
+    RENAME (PART_KEY AS ORDER_ITEM_PART_KEY, SUPPLIER_KEY AS ORDER_ITEM_SUPPLIER_KEY)
+  FROM order_items
+), projection_5550 AS (
+  SELECT
+    *
+    RENAME (PART_KEY AS PART_SUPPLIER_PART_KEY, SUPPLIER_KEY AS PART_SUPPLIER_SUPPLIER_KEY)
+  FROM part_suppliers
+), join_d055 AS (
+  SELECT
+    *
+  FROM projection_44ea
+  JOIN projection_5550
+    ON projection_44ea.ORDER_ITEM_PART_KEY = projection_5550.PART_SUPPLIER_PART_KEY
+    AND projection_44ea.ORDER_ITEM_SUPPLIER_KEY = projection_5550.PART_SUPPLIER_SUPPLIER_KEY
+), formula_fac1 AS (
+  SELECT
+    *,
+    {{ cents_to_dollars("part_supplier.cost") }} AS SUPPLIER_COST,
+    'ccc' AS TEST,
+    1 AS ORDER_ITEM_COUNT
+  FROM join_d055
+), projection_ed18 AS (
+  SELECT
+    ORDER_ITEM_KEY,
+    ORDER_KEY,
+    ORDER_DATE,
+    CUSTOMER_KEY,
+    ORDER_ITEM_PART_KEY AS PART_KEY,
+    ORDER_ITEM_SUPPLIER_KEY AS SUPPLIER_KEY,
+    ORDER_ITEM_STATUS_CODE,
+    RETURN_FLAG,
+    LINE_NUMBER,
+    SHIP_DATE,
+    COMMIT_DATE,
+    RECEIPT_DATE,
+    SHIP_MODE,
+    SUPPLIER_COST,
+    RETAIL_PRICE,
+    TEST,
+    BASE_PRICE,
+    DISCOUNT_PERCENTAGE,
+    DISCOUNTED_PRICE,
+    TAX_RATE,
+    NATION_KEY,
+    ORDER_ITEM_COUNT,
+    QUANTITY,
+    GROSS_ITEM_SALES_AMOUNT,
+    DISCOUNTED_ITEM_SALES_AMOUNT,
+    ITEM_DISCOUNT_AMOUNT,
+    ITEM_TAX_AMOUNT,
+    NET_ITEM_SALES_AMOUNT
+  FROM formula_fac1
+), order_9304 AS (
+  SELECT
+    *
+  FROM projection_ed18
+  ORDER BY
+    ORDER_DATE ASC
+), fct_order_items AS (
+  SELECT
+    *
+  FROM order_9304
+)
+SELECT
+  *
+FROM fct_order_items
