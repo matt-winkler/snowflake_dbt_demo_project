@@ -8,8 +8,6 @@
     )
 }}
 
--- PR Triggerrr
-
 with orders as (
 
     select * from {{ ref('stg_tpch_orders') }}
@@ -36,8 +34,7 @@ order_item_summary as (
         sum(net_item_sales_amount) as net_item_sales_amount,
         count_if(return_flag = 'returned') as return_count
     from order_items
-    group by
-        1
+    group by order_key
 ),
 
 final as (

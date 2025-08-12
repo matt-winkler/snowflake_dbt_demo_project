@@ -65,3 +65,5 @@ models:
   #  +schema: snowflake_hub
 flags:
   require_generic_test_arguments_property: true
+  dbt_project_evaluator:
+   +schema: dbt_project_evaluator

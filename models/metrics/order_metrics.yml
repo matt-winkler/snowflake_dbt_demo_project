@@ -23,7 +23,7 @@ semantic_models:
       - name: order_total
         expr: gross_item_sales_amount
         description: The total amount for each order including taxes.
-        agg: sum
+        agg: sum      
       - name: order_count
         expr: order_key
         agg: count_distinct
@@ -45,6 +45,12 @@ metrics:
     description: "Sum of orders value"
     type: simple
     label: "order_total"
+    config:
+      meta: 
+        synonyms:
+          - "total sales dollars"
+          - "top line revenue"
+          - "KPI #1"
     type_params:
       measure: order_total
   - name: "order_count"
@@ -61,4 +67,3 @@ metrics:
     type_params:
       numerator: order_total
       denominator: order_count
-  
