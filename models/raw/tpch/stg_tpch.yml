@@ -52,12 +52,14 @@ models:
         description: '{{ doc("return_flag") }}'
         tests:
           - accepted_values:
-              values: ['normal','returned','awaiting return']
+              arguments:
+                values: ['normal', 'returned', 'awaiting return']
       - name: status_code
         description: status code of the order item
         tests:
           - accepted_values:
-              values: ['returned','billed','shipped']
+              arguments:
+                values: ['returned', 'billed', 'shipped']
       - name: ship_date
         description: '{{ doc("ship_date") }}'
       - name: commit_date
@@ -84,8 +86,8 @@ models:
       - name: region_key
         description: foreign key to stg_tpch_regions
       - name: comment
-        description: additional commentary             
- 
+        description: additional commentary
+
   - name: stg_tpch_orders
     description: staging layer for orders data
     columns:
@@ -129,7 +131,6 @@ models:
         description: '{{ doc("cost") }}'
       - name: comment
         description: '{{ doc("comment") }}'
-            
   - name: stg_tpch_parts
     description: staging layer for parts data
     columns:
