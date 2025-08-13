@@ -40,7 +40,6 @@ models:
       build_after:
         count: 12
         period: hour
-      updates_on: any
     +group: matt_w
     raw:
       +materialized: view
