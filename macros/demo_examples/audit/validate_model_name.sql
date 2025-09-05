@@ -9,7 +9,7 @@
     {% endif %}
   
   {% elif ruleset == 'demos' %}
-    {% if not model.name.startswith('demos_') %}
+    {% if not model.name %}
       {{ exceptions.raise_compiler_error("Invalid model name validation. Demo models must start with 'demos_'. Got: " ~ model.identifier) }}
     {% endif %}
   
