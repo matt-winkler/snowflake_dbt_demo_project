@@ -41,13 +41,12 @@ models:
         description: '{{ doc("available_quantity") }}'
       - name: cost
         description: '{{ doc("cost") }}'
-        
   - name: order_items
     description: Intermediate model where we calculate item price, discounts and tax. This model is at the order item level.
-    tags:
-      - finance
     config:
       event_time: order_date
+      tags:
+        - finance
     columns:
       - name: order_item_key
         description: '{{ doc("order_item_key") }}'
