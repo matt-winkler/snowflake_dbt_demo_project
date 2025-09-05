@@ -14,9 +14,11 @@ models:
         description: foreign key for customers
         tests:
           - relationships:
-              to: ref('dim_customers')
-              field: customer_key
-              severity: error
+              config:
+                severity: error
+              arguments:
+                to: ref('dim_customers')
+                field: customer_key
       - name: order_date
         data_type: date
         description: date of the order
@@ -58,13 +60,13 @@ models:
       - name: region
         data_type: text
         description: customer region from dim_customers
-     
+
     # this is a public model - intended for consumption in other dbt Cloud projects
     # because it's public, we agree to a set of standards in its contract.
-    access: public
     config:
       contract:
         enforced: true
+      access: public
     latest_version: 0
     versions:
       - v: 0
@@ -72,13 +74,12 @@ models:
         columns:
           - include: all
             exclude: [total_price]
-    
   - name: dim_customers
     description: Customer dimensions table
-    access: public
     config:
       contract:
         enforced: true
+      access: public
     columns:
       - name: customer_key
         data_type: int
@@ -91,8 +92,10 @@ models:
         description: region name
         tests:
           - accepted_values:
-              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
-              severity: warn
+              config:
+                severity: warn
+              arguments:
+                values: ['AFRICA', 'MIDDLE EAST', 'ASIA', 'EUROPE', 'AMERICA']
       - name: name
         data_type: text
         description: customer id
@@ -114,10 +117,9 @@ models:
       - name: first_order_date
         data_type: date
         description: first order date for the customer
-  
+
   # this is a private model - it's intended for use within the 'customer360' group only
   - name: dim_parts
-    access: protected
     description: Parts dimensions table
     columns:
       - name: part_key
@@ -141,8 +143,9 @@ models:
         description: '{{ doc("retail_price") }}'
 
   # this is a protected model - it's intended for use in **this** dbt project only, but hidden from other projects
+    config:
+      access: protected
   - name: dim_suppliers
-    access: protected
     description: Suppliers dimensions table
     columns:
       - name: supplier_key
@@ -162,7 +165,8 @@ models:
         description: '{{ doc("phone_number") }}'
       - name: account_balance
         description: '{{ doc("account_balance") }}'
- 
+    config:
+      access: protected
   - name: fct_order_items
     description: order items fact table
     config:
@@ -248,7 +252,7 @@ models:
         data_type: number
         description: ""
         tests:
-         - not_null
+          - not_null
 
       - name: order_item_count
         data_type: number
