@@ -39,7 +39,7 @@ models:
     +group: matt_w
     demo_examples:
       +pre-hook:
-        - "{% if env_var('DBT_CLOUD_ENVIRONMENT_TYPE', '') == 'dev' %}{{validate_model_name(model, ruleset='demos')}}{% endif %}"
+        - "{{validate_model_name(model, ruleset='demos')}}"
     raw:
       +materialized: view
     marts:
