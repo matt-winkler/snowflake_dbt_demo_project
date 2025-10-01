@@ -8,9 +8,10 @@
 
 with order_item as (
 
-    select * from {{ ref('order_items') }} where 1=1
+    select * from {{ ref('order_items') }}
     
 ),
+
 part_supplier as (
     
     select * from {{ ref('part_suppliers') }}
