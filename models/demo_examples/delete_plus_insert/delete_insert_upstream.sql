@@ -1,7 +1,8 @@
 {{
     config(
-        materialized='incremental',
-        incremental_strategy='insert_overwrite'
+        materialized='table',
+        meta = {"pre_hook": "select 'foo' as bar"}
+
     )
 }}
 
