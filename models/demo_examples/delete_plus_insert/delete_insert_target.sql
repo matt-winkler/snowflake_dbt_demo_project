@@ -2,7 +2,8 @@
     config(
         materialized='incremental',
         unique_key='id',
-        incremental_strategy='delete+insert'
+        incremental_strategy='delete+insert',
+        meta = {"pre_hook": "select 'foo' as bar"}
     )
 }}
 
