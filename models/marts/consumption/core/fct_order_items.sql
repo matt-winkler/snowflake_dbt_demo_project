@@ -43,7 +43,7 @@ final as (
         order_item.discounted_price,
         order_item.tax_rate,
         part_supplier.nation_key,
-        1 as order_item_count,
+        2 as order_item_count,
         order_item.quantity,
         order_item.gross_item_sales_amount,
         order_item.discounted_item_sales_amount,
