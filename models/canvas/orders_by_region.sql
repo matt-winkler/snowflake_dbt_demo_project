@@ -8,7 +8,7 @@ WITH fct_order_items AS (
   SELECT
     CUSTOMER_KEY,
     REGION,
-    NATION
+    NAME
   FROM {{ ref('snowflake_hub', 'dim_customers') }}
 ), exclude_returns AS (
   SELECT
