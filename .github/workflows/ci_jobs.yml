@@ -1,0 +1,14 @@
+name: Run dbt Cloud jobs
+on:
+  pull_request:
+    types: [opened, synchronize, closed]
+
+jobs:
+  trex-ci-job:
+    name: trex-ci-job
+    uses: ./.github/workflows/ci_template.yml
+    secrets: inherit
+    with:
+      dbt_project_id: "468760"
+      dbt_job_id: "70403104239950"
+      env: "ci"
