@@ -1,0 +1,15 @@
+name: Run dbt Cloud jobs
+on:
+  pull_request:
+    types:
+      - synchronize
+
+jobs:
+  matts-ci-job:
+    name: matts-ci-job
+    uses: ./.github/workflows/ci_template.yml
+    secrets: inherit
+    with:
+      dbt_project_id: "390111"
+      dbt_job_id: "967197"
+      env: "ci"
