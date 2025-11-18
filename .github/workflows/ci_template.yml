@@ -34,6 +34,7 @@ env:
   DBT_CLOUD_URL: ${{ inputs.dbt_url }}
   DBT_CLOUD_JOB_ENV: ${{ inputs.env }}
 
+
 jobs:
   run_ci_job:
     if: ${{ github.event_name == 'pull_request' && contains(fromJSON('["opened", "synchronize"]'), github.event.action) }}
