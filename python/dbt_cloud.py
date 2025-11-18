@@ -104,7 +104,7 @@ def main():
         run_id = run_dbt_cloud_job(
             url = req_job_url,
             headers = req_auth_header,
-            cause = f'{job_cause}++++{deferral_env_id}',
+            cause = job_cause,
             branch = git_branch,
             schema_override = schema_override,
             steps = job_steps,
