@@ -1,8 +1,6 @@
 name: Run dbt Cloud jobs
 on:
-  pull_request:
-    types:
-      - commit
+  push
 
 jobs:
   matts-ci-job:
