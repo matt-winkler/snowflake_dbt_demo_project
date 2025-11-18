@@ -20,7 +20,6 @@ api_token       = os.environ["DBT_CLOUD_API_TOKEN"]
 account_id      = os.environ["DBT_CLOUD_ACCOUNT_ID"]
 project_id      = os.environ["DBT_CLOUD_PROJECT_ID"]
 job_id          = os.environ["DBT_CLOUD_JOB_ID"]
-deferral_env_id = os.getenv("DBT_CLOUD_CI_DEFERRAL_ENV_ID", None)
 job_steps       = os.getenv("DBT_CLOUD_JOB_STEPS", None)
 
 job_config = f"""
@@ -32,7 +31,6 @@ Request configuration:
     account_id: {account_id}
     project_id: {project_id}
     job_id: {job_id}
-    deferral_env_id: {deferral_env_id}
 
 """
 # fmt: on
@@ -56,7 +54,6 @@ def run_dbt_cloud_job(
     url,
     headers,
     cause,
-    deferral_env_id=None, 
     branch=None,
     schema_override=None,
     steps=None,
@@ -64,8 +61,6 @@ def run_dbt_cloud_job(
     """Trigger a dbt Cloud job and returns the job id."""
 
     req_payload = {"cause": cause}
-    #if deferral_env_id:
-    #    req_payload["deferral_env_id"] = deferral_env_id
     if branch:
         req_payload["git_branch"] = branch.replace("refs/heads/", "")
     if schema_override:
