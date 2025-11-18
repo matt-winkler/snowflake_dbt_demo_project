@@ -43,7 +43,7 @@ env:
 jobs:
   run_ci_job:
     if: ${{ github.event_name == 'pull_request' && contains(fromJSON('["opened", "synchronize"]'), github.event.action) }}
-    runs-on: bt-arc-runner-set
+    runs-on: ubuntu-latest
     env:
       DBT_CLOUD_JOB_BRANCH: ${{ github.head_ref }}
       DBT_CLOUD_JOB_SCHEMA_OVERRIDE: "dbt_cloud_pr_${{ inputs.dbt_job_id }}_${{ github.event.number }}"
