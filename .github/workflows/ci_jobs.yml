@@ -12,5 +12,5 @@ jobs:
     secrets: inherit
     with:
       dbt_project_id: "390111"
-      dbt_job_id: "967197"
+      dbt_job_id: "807918"
       env: "ci"
