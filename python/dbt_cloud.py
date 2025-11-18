@@ -12,15 +12,15 @@ parser = argparse.ArgumentParser()
 args = parser.parse_args()
 
 # fmt: off
-api_base        = os.getenv("DBT_CLOUD_URL", "https://cloud.getdbt.com")
+api_base        = os.getenv("DBT_CLOUD_URL", "https://qz112.us1.getdbt.com")
 job_cause       = os.getenv("DBT_CLOUD_JOB_CAUSE", "github_actions_pull_request")
 git_branch      = os.getenv("DBT_CLOUD_JOB_BRANCH", None)
-git_sha         = os.getenv("DBT_CLOUD_GIT_SHA", None)
 schema_override = os.getenv("DBT_CLOUD_JOB_SCHEMA_OVERRIDE", None)
 api_token       = os.environ["DBT_CLOUD_API_TOKEN"]
 account_id      = os.environ["DBT_CLOUD_ACCOUNT_ID"]
 project_id      = os.environ["DBT_CLOUD_PROJECT_ID"]
 job_id          = os.environ["DBT_CLOUD_JOB_ID"]
+deferral_env_id = os.getenv("DBT_CLOUD_CI_DEFERRAL_ENV_ID", None)
 job_steps       = os.getenv("DBT_CLOUD_JOB_STEPS", None)
 
 job_config = f"""
@@ -28,11 +28,11 @@ Request configuration:
     api_base: {api_base}
     job_cause: {job_cause}
     git_branch: {git_branch}
-    git_sha:    {git_sha}
     schema_override: {schema_override}
     account_id: {account_id}
     project_id: {project_id}
     job_id: {job_id}
+    deferral_env_id: {deferral_env_id}
 
 """
 # fmt: on
@@ -56,6 +56,7 @@ def run_dbt_cloud_job(
     url,
     headers,
     cause,
+    deferral_env_id=None, 
     branch=None,
     schema_override=None,
     steps=None,
@@ -63,12 +64,15 @@ def run_dbt_cloud_job(
     """Trigger a dbt Cloud job and returns the job id."""
 
     req_payload = {"cause": cause}
+    #if deferral_env_id:
+    #    req_payload["deferral_env_id"] = deferral_env_id
     if branch:
         req_payload["git_branch"] = branch.replace("refs/heads/", "")
     if schema_override:
         req_payload["schema_override"] = schema_override.replace("-", "_")
     if steps:
         req_payload["steps_override"] = steps
+
     print(f"Triggering job:\n    url: {url}\n    payload: {req_payload}\n")
 
     data = json.dumps(req_payload).encode()
@@ -103,12 +107,12 @@ def main():
 
     try:
         run_id = run_dbt_cloud_job(
-            url=req_job_url,
-            headers=req_auth_header,
-            cause=job_cause,
-            branch=git_branch,
-            schema_override=schema_override,
-            steps=job_steps,
+            url = req_job_url,
+            headers = req_auth_header,
+            cause = f'{job_cause}++++{deferral_env_id}',
+            branch = git_branch,
+            schema_override = schema_override,
+            steps = job_steps,
         )
     except Exception as e:
         print(f"ERROR! - Could not trigger dbt Cloud job:\n{e}")

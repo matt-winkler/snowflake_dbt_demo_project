@@ -2,8 +2,7 @@ name: Run dbt Cloud jobs
 on:
   pull_request:
     types:
-      - opened
-      - closed
+      - synchronize
 
 jobs:
   matts-ci-job:
@@ -14,3 +13,4 @@ jobs:
       dbt_project_id: "390111"
       dbt_job_id: "967197"
       env: "ci"
+      dbt_ci_env_id: "346432"

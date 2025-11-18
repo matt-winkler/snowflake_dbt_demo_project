@@ -14,13 +14,18 @@ on:
         required: false
       dbt_project_id:
         description: "dbt Project ID"
-        default: "468760"
+        default: "390111"
         type: string
         required: true
       dbt_job_id:
         description: "dbt Job ID"
         type: string
         required: true
+      dbt_ci_deferral_env_id:
+        description: "dbt deferral override environment"
+        type: string
+        default: "346432"
+        required: false
       env:
         description: "dbt job env"
         type: string
@@ -31,6 +36,7 @@ env:
   DBT_CLOUD_ACCOUNT_ID: ${{ inputs.dbt_account_id }}
   DBT_CLOUD_PROJECT_ID: ${{ inputs.dbt_project_id }}
   DBT_CLOUD_JOB_ID: ${{ inputs.dbt_job_id }}
+  DBT_CLOUD_CI_DEFERRAL_ENV_ID: ${{ inputs.dbt_ci_deferral_env_id }}
   DBT_CLOUD_URL: ${{ inputs.dbt_url }}
   DBT_CLOUD_JOB_ENV: ${{ inputs.env }}
 
@@ -47,17 +53,4 @@ jobs:
         with:
           python-version: "3.12"
       - name: Run dbt Cloud job
-        run: "python python/dbt_cloud.py"                                                 #run dbt ci jobs without steps
-        # run: "python python/dbt_cloud_steps.py -s 'dbt run -s state:modified'"          #run dbt ci jobs with steps. Differet steps can be added to run based of environment
-  drop_pr_schema:
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' }}
-    runs-on: bt-arc-runner-set
-    env:
-      DBT_CLOUD_JOB_SCHEMA_OVERRIDE: "dbt_cloud_pr_${{ inputs.dbt_job_id }}_${{ github.event.number }}"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-        with:
-          python-version: "3.9"
-      - name: Drop PR schema
-        run: "python python/dbt_cloud_steps.py -s 'dbt run-operation drop_pr_schema'"
+        run: "python python/dbt_cloud.py"
