@@ -5,7 +5,6 @@
     )
 }}
 
-
 with order_item as (
 
     select * from {{ ref('order_items') }} where 1=1
@@ -37,7 +36,7 @@ final as (
         {{cents_to_dollars("part_supplier.cost")}} as supplier_cost,
         {# ps.retail_price, #}
         part_supplier.retail_price,
-        'ccc' as test,
+        'bbb' as test,
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
