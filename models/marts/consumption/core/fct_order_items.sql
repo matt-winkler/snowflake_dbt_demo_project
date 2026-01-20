@@ -8,7 +8,7 @@
 
 with order_item as (
 
-    select * from {{ ref('order_items') }} where 1=1
+    select * from {{ ref('order_items') }}
     
 ),
 part_supplier as (
@@ -37,13 +37,13 @@ final as (
         {{cents_to_dollars("part_supplier.cost")}} as supplier_cost,
         {# ps.retail_price, #}
         part_supplier.retail_price,
-        'ccc' as test,
+        --'ccc' as test,
         order_item.base_price,
         order_item.discount_percentage,
         order_item.discounted_price,
         order_item.tax_rate,
         part_supplier.nation_key,
-        1 as order_item_count,
+        4 as order_item_count,
         order_item.quantity,
         order_item.gross_item_sales_amount,
         order_item.discounted_item_sales_amount,
