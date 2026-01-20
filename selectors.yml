@@ -5,5 +5,9 @@ selectors:
         Excludes resources defined in installed packages.
     default: true
     definition:
-      method: package
-      value: this
+      union:
+        - method: package
+          value: this
+        - exclude:
+          - method: tag
+            value: ci_only
