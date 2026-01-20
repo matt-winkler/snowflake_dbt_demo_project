@@ -1,27 +1,25 @@
-{{
-    config(
-        materialized = 'table'
-    )
-}}
-with part as (
-
-    select * from {{ref('stg_tpch_parts')}}
-
-),
-
-final as (
-    select 
-        part_key,
-        manufacturer,
-        name,
-        brand,
-        type,
-        size,
-        container,
-        retail_price
-    from
-        part
+WITH stg_tpch_parts AS (
+  SELECT
+    PART_KEY,
+    MANUFACTURER,
+    NAME,
+    BRAND,
+    TYPE,
+    SIZE,
+    CONTAINER,
+    RETAIL_PRICE
+  FROM {{ ref('stg_tpch_parts') }}
+), order_4c76 AS (
+  SELECT
+    *
+  FROM stg_tpch_parts
+  ORDER BY
+    PART_KEY ASC
+), dim_parts AS (
+  SELECT
+    *
+  FROM order_4c76
 )
-select *
-from final  
-order by part_key
+SELECT
+  *
+FROM dim_parts

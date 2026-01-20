@@ -19,12 +19,12 @@ WITH orders AS (
     *
   FROM rename_1
   WHERE
-    TOTAL_PRICE > 0
-), stg_tpch_orders AS (
+    TOTAL_PRICE > 100
+), stg_tpch_orders_2_sql AS (
   SELECT
     *
   FROM filter_1
 )
 SELECT
   *
-FROM stg_tpch_orders
+FROM stg_tpch_orders_2_sql
